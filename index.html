@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Happy English Medium School - Providing quality early childhood education in a fun, safe, and nurturing environment. Join us today!">
+    <meta name="keywords" content="preschool, english medium school, kindergarten, kids education, nursery">
+    <title>Happy English Medium School | Nurturing Young Minds</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <img src="assets/images/logo.jpg" alt="Happy English Medium School Logo">
+                <span>Happy English Medium School</span>
+            </a>
+            <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#programs">Programs</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact" class="btn-purple">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero">
+        <div class="hero-bg">
+            <img src="assets/images/hero.jpg" alt="Child playing on playground">
+            <div class="overlay"></div>
+        </div>
+        <div class="container hero-content fade-in-up">
+            <div class="hero-text">
+                <h1>Where Learning Meets <span class="highlight-orange">Fun</span> & <span
+                        class="highlight-orange">Creativity</span></h1>
+                <p>We provide a safe, nurturing, and colorful environment for your child to grow, learn, and explore the
+                    world.</p>
+                <div class="hero-buttons">
+                    <a href="#about" class="btn-primary">Learn More</a>
+                    <a href="#contact" class="btn-purple">Admissions Open</a>
+                </div>
+                <div style="margin-top: 1rem;">
+                    <a href="assets/Dhananjay Jagtap_QA.pdf" download="School_Brochure" class="btn-primary"
+                        style="background-color: #FF4B01; color: white; display: inline-flex; align-items: center; gap: 8px;">
+                        <span>Download Brochure</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Admission Form (Right Side) -->
+            <div class="hero-form">
+                <div class="admission-form-container">
+                    <h3>Connect With Our School Team</h3>
+                    <form id="admissionForm">
+                        <div class="form-row">
+                            <select class="form-select" id="gradeSelect">
+                                <option value="">Select Grade</option>
+                                <option value="nursery">Nursery</option>
+                                <option value="junior_kg">Junior KG</option>
+                                <option value="senior_kg">Senior KG</option>
+                            </select>
+                        </div>
+                        <div class="form-row two-col">
+                            <input type="text" placeholder="Student First Name" class="form-input" id="firstNameInput">
+                            <input type="text" placeholder="Student Last Name" class="form-input" id="lastNameInput">
+                        </div>
+                        <div class="form-row two-col">
+                            <input type="tel" placeholder="Mobile (10 digit)" class="form-input" id="mobileInput">
+                            <input type="email" placeholder="Email" class="form-input">
+                        </div>
+                        <button type="submit" class="btn-submit">Send Enquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section id="features" class="section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Why Choose Us?</h2>
+                <p>We focus on holistic development through modern teaching methodologies.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card scroll-reveal">
+                    <div class="icon-circle bg-purple">📚</div>
+                    <h3>Quality Education</h3>
+                    <p>Curriculum designed to foster critical thinking and creativity from an early age.</p>
+                </div>
+                <div class="feature-card scroll-reveal" style="transition-delay: 100ms;">
+                    <div class="icon-circle bg-orange">🎨</div>
+                    <h3>Creative Arts</h3>
+                    <p>Encouraging expression through painting, music, and craft activities.</p>
+                </div>
+                <div class="feature-card scroll-reveal" style="transition-delay: 200ms;">
+                    <div class="icon-circle bg-teal">🤸</div>
+                    <h3>Physical Activity</h3>
+                    <p>Large playground and structured physical education for healthy growth.</p>
+                </div>
+                <div class="feature-card scroll-reveal" style="transition-delay: 300ms;">
+                    <div class="icon-circle bg-pink">🛡️</div>
+                    <h3>Safe Environment</h3>
+                    <p>CCTV surveillance and trained staff ensuring complete safety for your child.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding bg-light">
+        <div class="container">
+            <div class="row align-center">
+                <div class="col-half scroll-reveal">
+                    <div class="image-wrapper">
+                        <img src="assets/images/illustration.jpg" alt="Children playing illustration"
+                            class="rounded-shadow">
+                        <div class="floating-badge">
+                            <span>Since</span>
+                            <strong>2017</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-half scroll-reveal">
+                    <h2>Nurturing the Leaders of Tomorrow</h2>
+                    <p class="lead">At Happy English Medium School, we believe every child is unique and deserves the
+                        best start in life.</p>
+                    <p>Our "Play-Way" methodology ensures that children enjoy the process of learning. We combine
+                        traditional values with modern educational aids to create a balanced environment.</p>
+                    <ul class="check-list">
+                        <li>Experienced & Caring Faculty</li>
+                        <li>Modern Classrooms with E-Learning</li>
+                        <li>Regular Parent-Teacher Interaction</li>
+                        <li>Focus on Manners & Etiquette</li>
+                    </ul>
+                    <a href="#contact" class="btn-text">Get in touch &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery/Programs Video Section -->
+    <section id="gallery" class="section-padding">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Life at School</h2>
+                <p>A glimpse into the daily joy and learning at our campus.</p>
+            </div>
+            <!-- Seamless Horizontal Scroll Gallery -->
+            <div class="gallery-container">
+                <div class="gallery-track">
+                    <!-- Set 1 -->
+                    <div class="gallery-item">
+                        <img src="assets/images/activity.jpg" alt="Art class activity">
+                        <div class="gallery-overlay">
+                            <h4>Art & Craft</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/hero.jpg" alt="Outdoor Play">
+                        <div class="gallery-overlay">
+                            <h4>Outdoor Play</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/illustration.jpg" alt="Group Learning">
+                        <div class="gallery-overlay">
+                            <h4>Friendship & Fun</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/activity.jpg" alt="Learning">
+                        <div class="gallery-overlay">
+                            <h4>Creative Learning</h4>
+                        </div>
+                    </div>
+
+                    <!-- Set 2 (Duplicate for Infinity Effect) -->
+                    <div class="gallery-item">
+                        <img src="assets/images/activity.jpg" alt="Art class activity">
+                        <div class="gallery-overlay">
+                            <h4>Art & Craft</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/hero.jpg" alt="Outdoor Play">
+                        <div class="gallery-overlay">
+                            <h4>Outdoor Play</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/illustration.jpg" alt="Group Learning">
+                        <div class="gallery-overlay">
+                            <h4>Friendship & Fun</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="assets/images/activity.jpg" alt="Learning">
+                        <div class="gallery-overlay">
+                            <h4>Creative Learning</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section bg-orange text-white">
+        <div class="container text-center">
+            <h2>Ready to Start the Journey?</h2>
+            <p>Enrollments are now open for the upcoming academic year.</p>
+            <a href="#contact" class="btn-purple">Contact Us Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="assets/images/logo.jpg" alt="Logo">
+                        <h3>Happy English Medium School</h3>
+                    </div>
+                    <p>Fostering a love for learning in a happy environment.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#programs">Admissions</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="contact-list">
+                        <li>📍 Adarsh Nagar , Dighi, Pune - 411015</li>
+                        <li>📞 +91 9822531127</li>
+                        <li>✉️ info@happyschool.edu</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom text-center">
+                <p>&copy; 2024 Happy English Medium School. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
