@@ -535,19 +535,6 @@ p {
     }
 }
 
-/* CTA */
-.cta-section {
-    padding: 4rem 0;
-}
-
-.cta-section h2 {
-    color: #ffffff !important;
-}
-
-.cta-section p {
-    color: var(--primary-orange) !important;
-    font-weight: 500;
-}
 
 /* Footer */
 .footer {
