@@ -506,23 +506,106 @@ p {
 
 .gallery-item:hover .gallery-overlay {
     opacity: 1;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(107, 16, 156, 0.85);
+    /* Deep Purple Theme */
+    backdrop-filter: blur(8px);
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    padding: 2rem;
 }
 
 .gallery-overlay h4 {
-    margin-bottom: 0.5rem;
-    color: var(--primary-orange);
+    margin-bottom: 0.8rem;
+    color: var(--primary-yellow);
+    font-size: 1.5rem;
 }
 
 .gallery-overlay p {
-    font-size: 0.85rem;
-    line-height: 1.5;
+    font-size: 0.95rem;
+    line-height: 1.6;
     color: white;
+}
+
+/* Events Section - Vision Pro Inspired */
+.events-section {
+    padding: 5rem 0;
+    background: #000;
+    /* Dark background for the museum feel */
+    color: white;
+    overflow: hidden;
+}
+
+.events-scroll {
+    display: flex;
+    gap: 3rem;
+    padding: 3rem 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    /* Hide scrollbar Firefox */
+    -ms-overflow-style: none;
+    /* Hide scrollbar IE/Edge */
+    perspective: 1000px;
+}
+
+.events-scroll::-webkit-scrollbar {
+    display: none;
+    /* Hide scrollbar Chrome/Safari */
+}
+
+.event-card {
+    flex: 0 0 500px;
+    height: 350px;
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    scroll-snap-align: center;
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-style: preserve-3d;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.event-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.event-card:hover {
+    transform: scale(1.05) translateZ(50px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.2);
+    z-index: 10;
+}
+
+.event-card:hover img {
+    transform: scale(1.1);
+}
+
+.event-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    color: white;
+    transform: translateZ(20px);
+}
+
+.event-info h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    color: var(--primary-yellow);
+}
+
+.event-info span {
+    font-size: 0.9rem;
+    opacity: 0.8;
 }
 
 @keyframes scroll {
@@ -820,5 +903,16 @@ p {
 @media (max-width: 480px) {
     .form-row.two-col {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .event-card {
+        flex: 0 0 300px;
+        height: 250px;
+    }
+
+    .events-scroll {
+        gap: 1.5rem;
     }
 }
