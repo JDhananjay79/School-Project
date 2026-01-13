@@ -21,42 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Scroll Reveal Animation (Lazy Loading Effect)
-    const revealElements = document.querySelectorAll('.scroll-reveal');
-
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                // Optional: Stop observing once revealed
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        root: null,
-        threshold: 0.15, // Trigger when 15% of element is visible
-        rootMargin: "0px 0px -50px 0px"
-    });
-
-    revealElements.forEach(el => revealObserver.observe(el));
-
-    // Navbar scroll effect (add shadow on scroll)
-    const navbar = document.querySelector('.navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1)";
-            navbar.style.background = "rgba(255, 255, 255, 0.98)";
-        } else {
-            navbar.style.boxShadow = "0 4px 6px rgba(0,0,0,0.05)";
-            navbar.style.background = "rgba(255, 255, 255, 0.95)";
-        }
-    });
-
     // Admission Form Logic
     const gradeSelect = document.getElementById('gradeSelect');
     const firstNameInput = document.getElementById('firstNameInput');
     const lastNameInput = document.getElementById('lastNameInput');
     const mobileInput = document.getElementById('mobileInput');
+    const downloadBrochureBtn = document.getElementById('downloadBrochureBtn'); // New ID required in HTML
 
     if (gradeSelect && firstNameInput && lastNameInput && mobileInput) {
         // Initially disable name fields
@@ -91,6 +61,34 @@ document.addEventListener('DOMContentLoaded', () => {
             this.value = this.value.replace(/[^0-9]/g, '');
         });
 
+        // State to track submission
+        let isFormSubmitted = false;
+
+        // Helper function to validate form
+        function isFormValid() {
+            const grade = gradeSelect.value;
+            const firstName = firstNameInput.value;
+            const lastName = lastNameInput.value;
+            const mobile = mobileInput.value;
+            const email = document.querySelector('input[type="email"]').value;
+            return grade && firstName && lastName && mobile && email;
+        }
+
+        // Handle "Download Brochure" Click
+        if (downloadBrochureBtn) {
+            downloadBrochureBtn.addEventListener('click', (e) => {
+                if (!isFormSubmitted) {
+                    e.preventDefault(); // Stop download
+                    if (isFormValid()) {
+                        alert('Please click "Send Enquiry" to submit your details first.');
+                    } else {
+                        alert('Please fill and submit the form to download brochure');
+                    }
+                }
+                // If isFormSubmitted is true, allow download
+            });
+        }
+
         // Form Submission Handler
         const admissionForm = document.getElementById('admissionForm');
         if (admissionForm) {
@@ -110,33 +108,73 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
-                // 1. Simulate "Sending PDF": Trigger Download
-                const link = document.createElement('a');
-                link.href = 'assets/Dhananjay Jagtap_QA.pdf'; // Path to the asset
-                link.download = 'School_Brochure.pdf';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
+                // ----------------------------------------------------
+                // 1. Send Data to Google Sheets (The "Online Excel")
+                // ----------------------------------------------------
+                const scriptURL = 'https://script.google.com/macros/s/AKfycbzLsLL3prpT2X3v8NmEw7NFkqSdagSuewX17T3BVZrubITGpH-DflLuigu0nHrJDiSb/exec';
 
-                // 2. Send Enquiry to School via WhatsApp
-                // Construct Message
-                const message = `*New Admission Enquiry*\n\n` +
-                    `*Student Name:* ${firstName} ${lastName}\n` +
-                    `*Grade:* ${grade}\n` +
-                    `*Mobile:* ${mobile}\n` +
-                    `*Email:* ${email}\n\n` +
-                    `Please send me more details.`;
+                // Prepare data for Google Sheets (Keys must match Headers in Sheet)
+                const formData = new FormData();
+                formData.append('Student Name', `${firstName} ${lastName}`);
+                formData.append('Grade', grade);
+                formData.append('Mobile', mobile);
+                formData.append('Email', email);
 
-                const encodedMessage = encodeURIComponent(message);
-                const schoolNumber = '919822531127';
-                const whatsappUrl = `https://wa.me/${schoolNumber}?text=${encodedMessage}`;
+                // Send to Google Sheets
+                // console.log("Sending enquiry...");
+                fetch(scriptURL, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors' // Important for mobile/cross-origin
+                })
+                    .then(() => {
+                        // With no-cors, we get an opaque response, so we assume success
+                        console.log('Request sent (no-cors)');
 
-                // Open WhatsApp
-                window.open(whatsappUrl, '_blank');
+                        // Mark as submitted
+                        isFormSubmitted = true;
 
-                // Optional: Reset form
-                // admissionForm.reset();
+                        // Notify user
+                        alert("Thank you! Your enquiry has been sent. You can now download the brochure.");
+                    })
+                    .catch(error => {
+                        console.error('Error!', error.message);
+                        alert("There was an error sending your enquiry, but it may have been recorded. Please check your connection.");
+                    });
+
+                // Auto-download REMOVED as requested.
             });
         }
     }
+
+    // Scroll Reveal Animation (Lazy Loading Effect)
+    const revealElements = document.querySelectorAll('.scroll-reveal');
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                // Optional: Stop observing once revealed
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        root: null,
+        threshold: 0.15, // Trigger when 15% of element is visible
+        rootMargin: "0px 0px -50px 0px"
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Navbar scroll effect (add shadow on scroll)
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.style.boxShadow = "0 4px 6px rgba(0,0,0,0.1)";
+            navbar.style.background = "rgba(255, 255, 255, 0.98)";
+        } else {
+            navbar.style.boxShadow = "0 4px 6px rgba(0,0,0,0.05)";
+            navbar.style.background = "rgba(255, 255, 255, 0.95)";
+        }
+    });
 });
