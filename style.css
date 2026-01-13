@@ -666,6 +666,22 @@ p {
     .gallery-grid {
         grid-template-columns: 1fr;
     }
+
+    /* Mobile Header Fixes */
+    .logo img {
+        height: 50px;
+    }
+
+    .logo span {
+        font-size: 1rem;
+        white-space: normal;
+        line-height: 1.1;
+    }
+
+    .hero {
+        padding-bottom: 160px;
+        /* More space for button */
+    }
 }
 
 /* Hero Section Layout Update */
