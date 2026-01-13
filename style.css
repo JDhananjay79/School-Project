@@ -362,7 +362,8 @@ p {
     background: var(--white);
     padding: 2rem;
     border-radius: var(--radius);
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-md);
+    /* Enhanced Shadow */
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
     border-bottom: 4px solid transparent;
@@ -370,7 +371,8 @@ p {
 
 .feature-card:hover {
     transform: translateY(-10px);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-lg);
+    /* Enhanced Hover Shadow */
     border-bottom-color: var(--primary-yellow);
 }
 
