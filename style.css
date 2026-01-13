@@ -500,8 +500,29 @@ p {
     transition: opacity 0.3s;
 }
 
+.gallery-container:hover .gallery-track {
+    animation-play-state: paused;
+}
+
 .gallery-item:hover .gallery-overlay {
     opacity: 1;
+    background: rgba(0, 0, 0, 0.8);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.gallery-overlay h4 {
+    margin-bottom: 0.5rem;
+    color: var(--primary-orange);
+}
+
+.gallery-overlay p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: white;
 }
 
 @keyframes scroll {
