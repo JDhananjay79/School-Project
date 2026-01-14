@@ -112,7 +112,7 @@ p {
 }
 
 .section-padding {
-    padding: 5rem 0;
+    padding: 3rem 0;
 }
 
 .text-center {
@@ -540,8 +540,8 @@ p {
 /* Hide scrollbar but keep functionality */
 .events-scroll {
     display: flex;
-    gap: 2rem;
-    padding: 3rem 1rem;
+    gap: 1.5rem;
+    padding: 1.5rem 1rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     perspective: 1000px;

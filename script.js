@@ -209,6 +209,14 @@ document.addEventListener('DOMContentLoaded', () => {
             slider.scrollLeft = scrollLeft - walk;
         });
 
+        // Mouse wheel horizontal scroll
+        slider.addEventListener('wheel', (e) => {
+            if (e.deltaY !== 0) {
+                e.preventDefault();
+                slider.scrollLeft += e.deltaY;
+            }
+        });
+
         // Set initial cursor
         slider.style.cursor = 'grab';
     }
