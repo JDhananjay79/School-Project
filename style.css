@@ -537,6 +537,7 @@ p {
     overflow: hidden;
 }
 
+/* Hide scrollbar but keep functionality */
 .events-scroll {
     display: flex;
     gap: 2rem;
@@ -545,21 +546,15 @@ p {
     scroll-snap-type: x mandatory;
     perspective: 1000px;
     scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
-/* Hide default scrollbar but allow interaction */
 .events-scroll::-webkit-scrollbar {
-    height: 6px;
-}
-
-.events-scroll::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-
-.events-scroll::-webkit-scrollbar-thumb {
-    background: var(--primary-orange);
-    border-radius: 10px;
+    display: none;
+    /* Chrome, Safari and Opera */
 }
 
 /* Focus Effect: Blur others when group is hovered */
