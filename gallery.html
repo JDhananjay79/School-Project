@@ -34,7 +34,7 @@
 
         .gallery-hero p {
             font-size: 1.2rem;
-            opacity: 0.9;
+            color: white;
             max-width: 600px;
             margin: 0 auto;
         }
@@ -85,7 +85,7 @@
         /* Carousel Styles */
         .carousel-wrapper {
             position: relative;
-            max-width: 1000px;
+            max-width: 800px;
             margin: 0 auto;
             border-radius: 25px;
             overflow: hidden;
@@ -115,11 +115,21 @@
             left: 0;
             right: 0;
             padding: 2rem;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-            color: white;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
             transform: translateY(20px);
             opacity: 0;
             transition: all 0.4s ease;
+        }
+
+        .carousel-caption h3 {
+            color: var(--primary-yellow);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .carousel-caption p {
+            color: white;
+            font-weight: 500;
         }
 
         .carousel-slide.active .carousel-caption {
@@ -244,8 +254,7 @@
             <div class="carousel-wrapper" data-carousel>
                 <div class="carousel-main">
                     <div class="carousel-slide active">
-                        <img src="https://images.unsplash.com/photo-1514525253361-bee8d4007321?auto=format&fit=crop&q=80&w=1200"
-                            alt="Cultural Fest Dance">
+                        <img src="assets/images/gallery/fest_vibrant.jpg" alt="Cultural Fest Dance">
                         <div class="carousel-caption">
                             <h3>Vibrant Performances</h3>
                             <p>Students showcasing their dance skills on stage.</p>
@@ -297,8 +306,7 @@
                         </div>
                     </div>
                     <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1544606111-99da56848240?auto=format&fit=crop&q=80&w=1200"
-                            alt="Team Sports">
+                        <img src="assets/images/gallery/sports_teamwork.jpg" alt="Team Sports">
                         <div class="carousel-caption">
                             <h3>Teamwork in Action</h3>
                             <p>Collaborative games that build strong bonds.</p>
@@ -350,8 +358,7 @@
                         </div>
                     </div>
                     <div class="carousel-slide">
-                        <img src="https://images.unsplash.com/photo-1456735190827-d1262f71696f?auto=format&fit=crop&q=80&w=1200"
-                            alt="Creative Play">
+                        <img src="assets/images/gallery/activity_creative.jpg" alt="Creative Play">
                         <div class="carousel-caption">
                             <h3>Creative Expression</h3>
                             <p>Where imagination meets hands-on materials.</p>
