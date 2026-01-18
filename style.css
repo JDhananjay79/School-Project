@@ -112,7 +112,7 @@ p {
 }
 
 .section-padding {
-    padding: 3rem 0;
+    padding: 6rem 0;
 }
 
 .text-center {
@@ -540,8 +540,8 @@ p {
 /* Hide scrollbar but keep functionality */
 .events-scroll {
     display: flex;
-    gap: 2.5rem;
-    padding: 3rem 2rem;
+    gap: 3rem;
+    padding: 4rem 2rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     perspective: 1000px;
@@ -550,6 +550,12 @@ p {
     /* IE and Edge */
     scrollbar-width: none;
     /* Firefox */
+}
+
+/* Spacer to ensure last card is fully scrollable and not cut off */
+.events-scroll::after {
+    content: '';
+    flex: 0 0 2rem;
 }
 
 .events-scroll::-webkit-scrollbar {
