@@ -11,6 +11,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg">
     <link
         href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
@@ -217,102 +218,144 @@
             }
         }
 
-        /* Space Loader Styles */
+        /* Updated Space Loader Styles */
         .space-loader {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #0b0d17;
+            background: radial-gradient(circle at center, #1a1c2c 0%, #0b0d17 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             z-index: 9999;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
+            transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1s;
+            overflow: hidden;
         }
 
         .space-loader.fade-out {
             opacity: 0;
             visibility: hidden;
+            transform: scale(1.1);
         }
 
         .space-container {
             position: relative;
-            width: 200px;
-            height: 200px;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .rocket-ship {
-            font-size: 4rem;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: rocketFloat 2s ease-in-out infinite;
+            font-size: 5rem;
+            z-index: 10;
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
+            animation: rocketPhysical 4s ease-in-out infinite;
+            pointer-events: none;
         }
 
         .planet-bg {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(45deg, #ff4b01, #feca0b);
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(135deg, #ff4b01 0%, #feca0b 100%);
             border-radius: 50%;
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 40px rgba(255, 75, 1, 0.4);
-            animation: planetPulse 3s ease-in-out infinite;
+            box-shadow: 0 0 60px rgba(255, 75, 1, 0.5), inset -10px -10px 20px rgba(0, 0, 0, 0.2);
+            animation: planetFloat 6s ease-in-out infinite;
+        }
+
+        .meteor {
+            position: absolute;
+            width: 4px;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, #fff);
+            opacity: 0.3;
+            animation: meteorShower 3s linear infinite;
         }
 
         .stars-container {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            animation: starRotate 20s linear infinite;
+            width: 200%;
+            height: 200%;
+            animation: starRotate 60s linear infinite;
         }
 
         .star-dot {
             position: absolute;
             background: white;
             border-radius: 50%;
-            width: 2px;
-            height: 2px;
+            box-shadow: 0 0 5px #fff;
         }
 
         .loading-text-space {
             color: white;
             font-family: var(--font-heading);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin-top: 2rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            animation: textPulse 2s ease-in-out infinite;
         }
 
-        @keyframes rocketFloat {
+        @keyframes rocketPhysical {
+            0% {
+                transform: translate(-20px, 0) rotate(-10deg);
+            }
 
-            0%,
-            100% {
-                transform: translate(-50%, -50%) translateY(0);
+            25% {
+                transform: translate(0, -30px) rotate(0deg);
             }
 
             50% {
-                transform: translate(-50%, -50%) translateY(-20px);
+                transform: translate(20px, 0) rotate(10deg);
+            }
+
+            75% {
+                transform: translate(0, 30px) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-20px, 0) rotate(-10deg);
             }
         }
 
-        @keyframes planetPulse {
+        @keyframes planetFloat {
 
             0%,
             100% {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 0.8;
+                transform: scale(1) translate(0, 0);
             }
 
             50% {
-                transform: translate(-50%, -50%) scale(1.1);
+                transform: scale(1.05) translate(-10px, -10px);
+            }
+        }
+
+        @keyframes meteorShower {
+            from {
+                transform: translate(500px, -500px) rotate(45deg);
+            }
+
+            to {
+                transform: translate(-500px, 500px) rotate(45deg);
+            }
+        }
+
+        @keyframes textPulse {
+
+            0%,
+            100% {
+                opacity: 0.7;
+                transform: scale(0.98);
+            }
+
+            50% {
                 opacity: 1;
+                transform: scale(1);
             }
         }
 
@@ -567,6 +610,22 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Generate dynamic meteors for the physical space animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const loader = document.getElementById('space-loader');
+            if (loader) {
+                for (let i = 0; i < 8; i++) {
+                    const meteor = document.createElement('div');
+                    meteor.className = 'meteor';
+                    meteor.style.left = `${Math.random() * 100}%`;
+                    meteor.style.top = `${Math.random() * 20}%`;
+                    meteor.style.animationDelay = `${Math.random() * 5}s`;
+                    loader.appendChild(meteor);
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

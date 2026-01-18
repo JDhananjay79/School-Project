@@ -12,6 +12,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg">
     <link
         href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
@@ -381,6 +382,22 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Generate dynamic meteors for the physical space animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const loader = document.getElementById('space-loader');
+            if (loader) {
+                for (let i = 0; i < 5; i++) {
+                    const meteor = document.createElement('div');
+                    meteor.className = 'meteor';
+                    meteor.style.left = `${Math.random() * 100}%`;
+                    meteor.style.top = `${Math.random() * 50}%`;
+                    meteor.style.animationDelay = `${Math.random() * 3}s`;
+                    loader.appendChild(meteor);
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>
