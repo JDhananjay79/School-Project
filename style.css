@@ -540,8 +540,8 @@ p {
 /* Hide scrollbar but keep functionality */
 .events-scroll {
     display: flex;
-    gap: 1.5rem;
-    padding: 1.5rem 1rem;
+    gap: 2.5rem;
+    padding: 3rem 2rem;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     perspective: 1000px;
@@ -557,13 +557,7 @@ p {
     /* Chrome, Safari and Opera */
 }
 
-/* Focus Effect: Blur others when group is hovered */
-.events-scroll:hover .event-card {
-    filter: blur(4px) brightness(0.8);
-    transform: scale(0.95);
-    opacity: 0.6;
-}
-
+/* Default state: Blur and scale down all cards */
 .event-card {
     flex: 0 0 450px;
     height: 320px;
@@ -571,10 +565,13 @@ p {
     overflow: hidden;
     position: relative;
     scroll-snap-align: center;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     cursor: pointer;
     box-shadow: var(--shadow-md);
     background: white;
+    filter: blur(4px) brightness(0.8);
+    transform: scale(0.9);
+    opacity: 0.7;
 }
 
 .event-card img {
@@ -584,10 +581,26 @@ p {
     transition: transform 0.8s ease;
 }
 
+/* 1st image zoomed and visible by default when not hovering */
+.events-scroll:not(:hover) .event-card:first-child {
+    filter: blur(0) brightness(1);
+    transform: scale(1.05);
+    opacity: 1;
+    z-index: 10;
+    box-shadow: var(--shadow-lg);
+}
+
+/* Focus Effect: Blur others when group is hovered */
+.events-scroll:hover .event-card {
+    filter: blur(6px) brightness(0.7);
+    transform: scale(0.85);
+    opacity: 0.5;
+}
+
 /* The hovered card stays sharp and zooms in */
 .events-scroll .event-card:hover {
     filter: blur(0) brightness(1);
-    transform: scale(1.1) translateZ(30px);
+    transform: scale(1.1);
     box-shadow: var(--shadow-lg);
     z-index: 100;
     opacity: 1;
