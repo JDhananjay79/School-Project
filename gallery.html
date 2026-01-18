@@ -138,6 +138,8 @@
         }
 
         .carousel-nav {
+            display: none !important;
+            /* Hidden as requested */
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -205,15 +207,138 @@
                 border-radius: 15px;
             }
 
+            .carousel-slide {
+                aspect-ratio: 4 / 5;
+                /* More vertical for mobile */
+            }
+
             .carousel-nav {
-                width: 40px;
-                height: 40px;
+                display: none !important;
+            }
+        }
+
+        /* Space Loader Styles */
+        .space-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0b0d17;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .space-loader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .space-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+        }
+
+        .rocket-ship {
+            font-size: 4rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: rocketFloat 2s ease-in-out infinite;
+        }
+
+        .planet-bg {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(45deg, #ff4b01, #feca0b);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 40px rgba(255, 75, 1, 0.4);
+            animation: planetPulse 3s ease-in-out infinite;
+        }
+
+        .stars-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            animation: starRotate 20s linear infinite;
+        }
+
+        .star-dot {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            width: 2px;
+            height: 2px;
+        }
+
+        .loading-text-space {
+            color: white;
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        @keyframes rocketFloat {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) translateY(0);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) translateY(-20px);
+            }
+        }
+
+        @keyframes planetPulse {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes starRotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
             }
         }
     </style>
 </head>
 
 <body>
+    <!-- Space Loader -->
+    <div id="space-loader" class="space-loader">
+        <div class="space-container">
+            <div class="stars-container" id="stars-gen"></div>
+            <div class="planet-bg"></div>
+            <div class="rocket-ship">🚀</div>
+        </div>
+        <div class="loading-text-space">Exploring the Stars...</div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">

@@ -221,6 +221,31 @@ document.addEventListener('DOMContentLoaded', () => {
         slider.style.cursor = 'grab';
     }
 
+    // Space Loader & Star Generation
+    const spaceLoader = document.getElementById('space-loader');
+    const starsGen = document.getElementById('stars-gen');
+
+    if (starsGen) {
+        // Generate random stars
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'star-dot';
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.opacity = Math.random();
+            starsGen.appendChild(star);
+        }
+    }
+
+    // Fade out loader after content is ready
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            if (spaceLoader) {
+                spaceLoader.classList.add('fade-out');
+            }
+        }, 2000); // Show for at least 2 seconds for impact
+    });
+
     // Carousel Logic for Gallery Page
     const carousels = document.querySelectorAll('[data-carousel]');
 
@@ -233,6 +258,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let currentIndex = 0;
         const totalSlides = slides.length;
+
+        // --- Touch/Swipe Support ---
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        main.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        main.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            if (touchStartX - touchEndX > swipeThreshold) {
+                showNext(); // Swipe Left
+            } else if (touchEndX - touchStartX > swipeThreshold) {
+                showPrev(); // Swipe Right
+            }
+        }
+        // ---------------------------
 
         function updateCarousel() {
             // Update positioning
@@ -268,10 +316,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Optional: Auto-play
+        // Auto-play (optional, keeps it alive)
         let interval = setInterval(showNext, 5000);
         carousel.addEventListener('mouseenter', () => clearInterval(interval));
         carousel.addEventListener('mouseleave', () => interval = setInterval(showNext, 5000));
+
+        // Pause auto-play on touch
+        carousel.addEventListener('touchstart', () => clearInterval(interval));
     });
 
     // Deep link smooth scroll (Gallery Page)
