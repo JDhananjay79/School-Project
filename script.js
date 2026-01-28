@@ -56,9 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Allow only numbers in mobile input
+        // Allow only numbers in mobile input and limit to 10 digits
         mobileInput.addEventListener('input', function () {
-            this.value = this.value.replace(/[^0-9]/g, '');
+            this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);
         });
 
         // State to track submission
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (isFormValid()) {
                         alert('Please click "Send Enquiry" to submit your details first.');
                     } else {
-                        alert('Please fill and submit the form to download brochure');
+                        alert('Please fill and submit the form to view the brochure');
                     }
                 }
                 // If isFormSubmitted is true, allow download
@@ -135,10 +135,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         isFormSubmitted = true;
 
                         // Notify user
-                        alert("Thank you! Your enquiry has been sent. You can now download the brochure.");
+                        alert("Thank you! Your enquiry has been sent. You can now view the brochure.");
+
+                        // CELEBRATION!
+                        createConfettiExplosion();
                     })
                     .catch(error => {
                         console.error('Error!', error.message);
+                        createConfettiExplosion(); // Show anyway for UX
                         alert("There was an error sending your enquiry, but it may have been recorded. Please check your connection.");
                     });
 
@@ -334,4 +338,132 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, 100);
     }
+
+    // "Send Enquiry" Bounce Effect
+    const sendEnquiryBtn = document.querySelector('.btn-submit');
+    if (sendEnquiryBtn) {
+        sendEnquiryBtn.addEventListener('click', () => {
+            // Add bounce class
+            sendEnquiryBtn.classList.add('btn-bounce');
+            // Remove after animation completes to allow re-triggering
+            setTimeout(() => {
+                sendEnquiryBtn.classList.remove('btn-bounce');
+            }, 600);
+        });
+    }
+
+    // Events Section Navigation Logic
+    const eventsScroll = document.querySelector('.events-scroll');
+    const prevEventBtn = document.querySelector('.events-nav-btn.prev');
+    const nextEventBtn = document.querySelector('.events-nav-btn.next');
+
+    if (eventsScroll && prevEventBtn && nextEventBtn) {
+        const checkScroll = () => {
+            const maxScroll = eventsScroll.scrollWidth - eventsScroll.clientWidth;
+            prevEventBtn.disabled = eventsScroll.scrollLeft <= 5; // Tolerance
+            nextEventBtn.disabled = eventsScroll.scrollLeft >= maxScroll - 5;
+        };
+
+        const scrollAmount = 350; // Card + gap
+
+        prevEventBtn.addEventListener('click', () => {
+            eventsScroll.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            setTimeout(checkScroll, 500); // Wait for scroll animation
+        });
+
+        nextEventBtn.addEventListener('click', () => {
+            eventsScroll.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            setTimeout(checkScroll, 500);
+        });
+
+        eventsScroll.addEventListener('scroll', () => {
+            // Debounce for performance
+            clearTimeout(eventsScroll.scrollTimer);
+            eventsScroll.scrollTimer = setTimeout(checkScroll, 100);
+        });
+
+        // Initialize button state
+        checkScroll();
+    }
+
+    // Keep last hovered event card active
+    const eventCards = document.querySelectorAll('.event-card');
+    if (eventCards.length > 0) {
+        eventCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                // Remove active class from all
+                eventCards.forEach(c => c.classList.remove('force-active'));
+                // Add to current
+                card.classList.add('force-active');
+            });
+        });
+    }
+
+    // Clone Notification Bar Content for Seamless Loop
+    const notificationContent = document.querySelector('.notification-content');
+    if (notificationContent) {
+        const originalContent = notificationContent.innerHTML;
+        notificationContent.innerHTML = originalContent + originalContent; // Duplicate once
+    }
+
+    // Remove Train Transition Overlay after animation
+    const trainOverlay = document.querySelector('.train-transition-overlay');
+    if (trainOverlay) {
+        setTimeout(() => { trainOverlay.classList.add('reveal-complete'); }, 500);
+        setTimeout(() => { trainOverlay.style.display = 'none'; }, 3000);
+    }
 });
+
+// Realistic Ribbon & Powder Celebration
+function createConfettiExplosion() {
+    const heroSection = document.body;
+    if (!heroSection) return;
+
+    const colors = ['#FF6F61', '#feca0b', '#6B109C', '#4a90e2', '#7ed321', '#00d2d3'];
+    const container = document.createElement('div');
+    container.classList.add('confetti-container');
+    heroSection.appendChild(container);
+
+    // Ribbons
+    for (let i = 0; i < 80; i++) {
+        const ribbon = document.createElement('div');
+        ribbon.classList.add('confetti-ribbon');
+        ribbon.style.left = (50 + (Math.random() - 0.5) * 50) + '%';
+        ribbon.style.top = '50%';
+        ribbon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+        const tx = (Math.random() - 0.5) * 200 + 'vw';
+        const ty = (Math.random() - 0.5) * 100 + 'vh';
+        ribbon.style.setProperty('--tx', tx);
+        ribbon.style.setProperty('--ty', ty);
+
+        // Slower animation (8s+ range for extra gravity feel)
+        ribbon.style.animation = `ribbonBlast ${8 + Math.random() * 6}s cubic-bezier(0.1, 0.8, 0.3, 1) forwards`;
+        container.appendChild(ribbon);
+    }
+
+    // Powder/Particles
+    for (let i = 0; i < 150; i++) {
+        const powder = document.createElement('div');
+        powder.classList.add('confetti-powder');
+        powder.style.left = '50%';
+        powder.style.top = '50%';
+        powder.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+        const angle = Math.random() * Math.PI * 2;
+        const velocity = 200 + Math.random() * 300;
+        const tx = Math.cos(angle) * velocity + 'px';
+        const ty = Math.sin(angle) * velocity + 'px';
+
+        powder.style.setProperty('--tx', tx);
+        powder.style.setProperty('--ty', ty);
+
+        powder.style.animation = `powderBlast ${1 + Math.random()}s ease-out forwards`;
+        container.appendChild(powder);
+    }
+
+    // Cleanup
+    setTimeout(() => {
+        container.remove();
+    }, 15000); // Extended cleanup for very slow ribbons
+}

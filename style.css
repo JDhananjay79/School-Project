@@ -11,6 +11,11 @@
     --accent-blue: #4a90e2;
     --accent-green: #7ed321;
     --accent-teal: #00d2d3;
+    --primary-purple: #6B109C;
+    --primary-orange: #FF4B01;
+    --accent-blue: #4a90e2;
+    --accent-green: #7ed321;
+    --accent-cyan: #00d2d3;
     --accent-pink: #ff9ff3;
     --text-dark: #2d3436;
     --text-muted: #636e72;
@@ -20,6 +25,14 @@
     --shadow-md: 0 10px 15px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 20px 25px rgba(0, 0, 0, 0.15);
     --radius: 16px;
+
+    /* New Color Scheme */
+    --bg-white: #FFFDFB;
+    --bg-main: #FFF4E6;
+    --bg-alt: #FFEDE0;
+    --bg-card: #FFFAF3;
+    --bg-footer: #2E2A27;
+    --footer-divider: #FF8A00;
 
     --font-heading: 'Fredoka', sans-serif;
     --font-body: 'Outfit', sans-serif;
@@ -40,7 +53,8 @@ body {
     font-family: var(--font-body);
     color: var(--text-dark);
     line-height: 1.6;
-    background-color: var(--white);
+    background-color: var(--bg-main);
+    /* Updated */
     overflow-x: hidden;
 }
 
@@ -112,7 +126,8 @@ p {
 }
 
 .section-padding {
-    padding: 4.5rem 0;
+    padding: 3rem 0;
+    /* Reduced spacing */
 }
 
 .text-center {
@@ -120,7 +135,8 @@ p {
 }
 
 .bg-light {
-    background-color: var(--bg-light);
+    background-color: var(--bg-alt);
+    /* Updated */
 }
 
 .bg-red {
@@ -229,11 +245,13 @@ p {
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 253, 251, 0.95);
+    /* Updated to Warm Soft White */
     backdrop-filter: blur(10px);
     z-index: 1000;
     box-shadow: var(--shadow-sm);
-    padding: 0.8rem 0;
+    padding: 0.4rem 0;
+    /* Reduced padding */
 }
 
 .nav-container {
@@ -249,7 +267,8 @@ p {
 }
 
 .logo img {
-    height: 90px;
+    height: 60px;
+    /* Reduced height */
     width: auto;
     border-radius: 50%;
 }
@@ -359,7 +378,8 @@ p {
 }
 
 .feature-card {
-    background: var(--white);
+    background: var(--bg-card);
+    /* Updated */
     padding: 2rem;
     border-radius: var(--radius);
     box-shadow: var(--shadow-md);
@@ -377,15 +397,19 @@ p {
 }
 
 .icon-circle {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
+    background: var(--primary-purple) !important;
+    /* Force Contact Us color */
     color: var(--white);
-    font-size: 2rem;
+    font-size: 2.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto 1.5rem;
+    box-shadow: 0 5px 15px rgba(107, 16, 156, 0.2);
+    border: 3px solid rgba(255, 255, 255, 0.2);
 }
 
 /* About Section */
@@ -555,17 +579,22 @@ p {
 /* Events Section - Immersive Focus */
 .events-section {
     padding: 5rem 0;
-    background: var(--bg-light);
+    /* Kept internal padding, container handles spacing */
+    background: var(--bg-alt);
+    /* Updated */
     color: var(--text-dark);
     overflow: hidden;
+    position: relative;
 }
 
 /* Hide scrollbar but keep functionality */
 .events-scroll {
     display: flex;
     gap: 3rem;
-    padding: 4rem 2rem;
+    padding: 2rem 2rem 4rem;
+    /* Bottom padding for hover effect space */
     overflow-x: auto;
+    /* Enable scroll */
     scroll-snap-type: x mandatory;
     perspective: 1000px;
     scroll-behavior: smooth;
@@ -587,20 +616,27 @@ p {
 }
 
 /* Default state: Blur and scale down all cards */
+/* Standard Card Style (No Storybook) */
 .event-card {
-    flex: 0 0 450px;
-    height: 320px;
-    border-radius: 20px;
+    flex: 0 0 320px;
+    height: 380px;
+    border-radius: var(--radius);
+    /* Standard radius */
     overflow: hidden;
     position: relative;
     scroll-snap-align: center;
-    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
     cursor: pointer;
     box-shadow: var(--shadow-md);
-    background: white;
-    filter: blur(4px) brightness(0.8);
-    transform: scale(0.9);
-    opacity: 0.7;
+    background: var(--bg-card);
+    opacity: 1 !important;
+    /* Force visible */
+    filter: none !important;
+    /* No blur */
+    transform: none !important;
+    /* No rotation */
+    border: none;
+    /* No spine */
 }
 
 .event-card img {
@@ -610,33 +646,17 @@ p {
     transition: transform 0.8s ease;
 }
 
-/* 1st image zoomed and visible by default when not hovering */
-.events-scroll:not(:hover) .event-card:first-child {
-    filter: blur(0) brightness(1);
-    transform: scale(1.05);
-    opacity: 1;
+/* Hover Effect */
+.events-scroll .event-card:hover,
+.events-scroll .event-card.force-active {
+    transform: translateY(-10px) !important;
+    box-shadow: var(--shadow-lg);
     z-index: 10;
-    box-shadow: var(--shadow-lg);
-}
-
-/* Focus Effect: Blur others when group is hovered */
-.events-scroll:hover .event-card {
-    filter: blur(6px) brightness(0.7);
-    transform: scale(0.85);
-    opacity: 0.5;
-}
-
-/* The hovered card stays sharp and zooms in */
-.events-scroll .event-card:hover {
-    filter: blur(0) brightness(1);
-    transform: scale(1.1);
-    box-shadow: var(--shadow-lg);
-    z-index: 100;
-    opacity: 1;
 }
 
 .event-card:hover img {
     transform: scale(1.1);
+
 }
 
 .event-info {
@@ -674,7 +694,8 @@ p {
 
 /* Footer */
 .footer {
-    background: var(--text-dark);
+    background: var(--bg-footer);
+    /* Updated */
     color: var(--white);
     padding: 3rem 0 1rem;
 }
@@ -713,7 +734,8 @@ p {
 }
 
 .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--footer-divider);
+    /* Updated */
     padding-top: 1.5rem;
     font-size: 0.9rem;
     color: #999;
@@ -911,23 +933,111 @@ p {
 
 .btn-submit {
     width: 100%;
-    background-color: #9b59b6;
-    color: white;
+    background-color: #FF6F61;
+    /* Updated Color */
+    color: var(--white);
     border: none;
-    padding: 12px;
+    padding: 14px;
     border-radius: 50px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.1rem;
     transition: all 0.3s;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
     font-family: var(--font-heading);
+    box-shadow: 0 4px 15px rgba(255, 111, 97, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-submit::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: 0.5s;
+}
+
+.btn-submit:hover::after {
+    left: 100%;
 }
 
 .btn-submit:hover {
-    background-color: #8e44ad;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: #ee5f51;
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(255, 111, 97, 0.6);
+}
+
+.btn-bounce {
+    animation: bounce 0.6s ease;
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-20px);
+    }
+
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Event Navigation Arrows */
+.events-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    background: var(--white);
+    color: var(--primary-orange);
+    border-radius: 50%;
+    border: 2px solid var(--primary-orange);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    z-index: 200;
+    font-size: 1.5rem;
+    display: flex !important;
+    /* Ensure visible */
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+/* Button Bounce Animation */
+.btn-bounce {
+    animation: bounce 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1;
+    /* Run only once */
+}
+
+@keyframes bounce {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    75% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 /* Responsive updates for Hero Form */
@@ -967,5 +1077,549 @@ p {
 
     .events-scroll {
         gap: 1.5rem;
+    }
+}
+
+/* Notification Bar */
+.notification-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 8px 0;
+    /* Reduced padding */
+    z-index: 9999;
+    overflow: hidden;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.notification-content {
+    display: flex;
+    width: max-content;
+    white-space: nowrap;
+    animation: marquee 30s linear infinite;
+}
+
+.notification-text {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin: 0 4rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: neonGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes neonGlow {
+    0% {
+        color: #fff;
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff00de, 0 0 30px #ff00de, 0 0 40px #ff00de;
+    }
+
+    33% {
+        color: #fff;
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff;
+    }
+
+    66% {
+        color: #fff;
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00;
+    }
+
+    100% {
+        color: #fff;
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff00de, 0 0 30px #ff00de, 0 0 40px #ff00de;
+    }
+}
+
+/* Crayon Wipe Transition */
+/* Toy Train Wipe Transition (Kids POV) */
+.train-transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #FFF8E7;
+    /* Paper/Cream base */
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    transition: transform 2.5s cubic-bezier(0.45, 0, 0.55, 1);
+    /* Smoother, longer reveal */
+    overflow: hidden;
+}
+
+.train-transition-overlay.reveal-complete {
+    transform: translateX(100%);
+}
+
+.train-container {
+    position: absolute;
+    bottom: 12%;
+    left: 0;
+    /* Align to the leading edge of the reveal */
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    z-index: 10001;
+    padding-left: 20px;
+    /* Space for the last coach to breathe */
+}
+
+/* Landscape Elements - Floating and Natural */
+.train-scene {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10000;
+}
+
+.sky-cloud {
+    position: absolute;
+    background: #fff;
+    border-radius: 50px;
+    opacity: 0.9;
+    filter: blur(2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.sky-cloud::before,
+.sky-cloud::after {
+    content: '';
+    position: absolute;
+    background: inherit;
+    border-radius: 50%;
+}
+
+.cloud-1 {
+    width: 120px;
+    height: 45px;
+    top: 15%;
+    left: 10%;
+    animation: floatSlow 8s infinite ease-in-out;
+}
+
+.cloud-1::before {
+    width: 60px;
+    height: 60px;
+    top: -30px;
+    left: 15px;
+}
+
+.cloud-1::after {
+    width: 50px;
+    height: 50px;
+    top: -15px;
+    left: 50px;
+}
+
+.cloud-2 {
+    width: 150px;
+    height: 50px;
+    top: 25%;
+    right: 15%;
+    animation: floatSlow 10s infinite ease-in-out reverse;
+}
+
+.cloud-2::before {
+    width: 70px;
+    height: 70px;
+    top: -35px;
+    left: 20px;
+}
+
+.cloud-3 {
+    width: 100px;
+    height: 40px;
+    top: 8%;
+    left: 45%;
+    animation: floatSlow 12s infinite ease-in-out 1s;
+}
+
+@keyframes floatSlow {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(20px, -10px);
+    }
+}
+
+.bird {
+    position: absolute;
+    width: 25px;
+    height: 12px;
+    border-top: 3px solid #333;
+    border-right: 3px solid #333;
+    border-radius: 50% 50% 0 0;
+    transform: rotate(45deg);
+    opacity: 0.5;
+    animation: flap 0.6s infinite alternate;
+}
+
+@keyframes flap {
+    to {
+        transform: rotate(45deg) scaleY(0.5);
+    }
+}
+
+.bird-1 {
+    top: 18%;
+    left: 25%;
+    animation-delay: 0.2s;
+}
+
+.bird-2 {
+    top: 22%;
+    left: 28%;
+    animation-delay: 0.5s;
+    width: 20px;
+    height: 10px;
+}
+
+.airplane {
+    position: absolute;
+    top: 15%;
+    left: 250px;
+    /* Moved bit more right */
+    width: 90px;
+    height: 30px;
+    z-index: 10002;
+}
+
+.plane-body {
+    width: 100%;
+    height: 100%;
+    background: #f0f0f0;
+    /* Typical white/grey plane */
+    border-radius: 50% 50% 10% 10%;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+}
+
+.plane-window-strip {
+    position: absolute;
+    top: 8px;
+    left: 15px;
+    display: flex;
+    gap: 4px;
+}
+
+.plane-window-strip span {
+    width: 5px;
+    height: 6px;
+    background: #4a90e2;
+    border-radius: 1px;
+}
+
+.plane-wing {
+    position: absolute;
+    width: 45px;
+    height: 12px;
+    background: #d0d0d0;
+    top: 10px;
+    left: 25px;
+    transform: perspective(100px) rotateX(40deg) skewX(-15deg);
+    border-radius: 2px;
+}
+
+.plane-tail {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #f0f0f0;
+    top: -15px;
+    left: 2px;
+    transform: skewX(25deg);
+    border-radius: 5px 5px 0 0;
+    border-top: 2px solid #ea2e3e;
+    /* Red tip for realism */
+}
+
+/* Aeroplane flies gently */
+@keyframes flyPlane {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.airplane {
+    animation: flyPlane 5s ease-in-out infinite;
+}
+
+
+/* Train Engine */
+.train-engine {
+    width: 120px;
+    height: 100px;
+    background: #FF6F61;
+    border-radius: 15px 15px 0 0;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.train-engine::before {
+    content: '';
+    position: absolute;
+    right: -10px;
+    bottom: 10px;
+    width: 20px;
+    height: 60px;
+    background: #4a90e2;
+    border-radius: 5px;
+}
+
+.chimney {
+    position: absolute;
+    top: -30px;
+    left: 20px;
+    width: 25px;
+    height: 30px;
+    background: #333;
+}
+
+.smoke {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: rgba(200, 200, 200, 0.8);
+    border-radius: 50%;
+    animation: puff 1s infinite ease-out;
+}
+
+.smoke:nth-child(2) {
+    animation-delay: 0.5s;
+    top: -35px;
+    left: 10px;
+    width: 15px;
+    height: 15px;
+}
+
+@keyframes puff {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(-30px) scale(2);
+        opacity: 0;
+    }
+}
+
+/* Wagons */
+.train-wagon {
+    width: 90px;
+    height: 70px;
+    border-radius: 5px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.wagon-1 {
+    background: #feca0b;
+}
+
+.wagon-2 {
+    background: #6B109C;
+}
+
+.wagon-3 {
+    background: #7ed321;
+}
+
+.wagon-4 {
+    background: #4a90e2;
+}
+
+.wagon-5 {
+    background: #ea2e3e;
+}
+
+/* Details */
+.train-window,
+.engine-window {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 25px;
+    background: #dbeeff;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+}
+
+.engine-window {
+    left: 20px;
+    top: 20px;
+    transform: none;
+    width: 30px;
+    height: 30px;
+}
+
+.train-light {
+    position: absolute;
+    bottom: 20px;
+    right: -5px;
+    width: 10px;
+    height: 15px;
+    background: #ffd700;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #ffd700;
+}
+
+.train-wagon::before {
+    content: '';
+    /* Connector */
+    position: absolute;
+    right: -10px;
+    /* Connect to right since engine is right */
+    bottom: 20px;
+    width: 10px;
+    height: 5px;
+    background: #333;
+    left: auto;
+}
+
+/* Wheels */
+.train-wheel {
+    position: absolute;
+    bottom: -15px;
+    width: 30px;
+    height: 30px;
+    background: #333;
+    border: 3px solid #ccc;
+    border-radius: 50%;
+    animation: rotateWheel 1s linear infinite;
+}
+
+.train-engine .train-wheel:nth-child(2) {
+    left: 10px;
+}
+
+.train-engine .train-wheel:nth-child(3) {
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    bottom: -20px;
+}
+
+/* Big rear wheel */
+
+.train-wagon .train-wheel:nth-child(1) {
+    left: 10px;
+}
+
+.train-wagon .train-wheel:nth-child(2) {
+    right: 10px;
+}
+
+@keyframes rotateWheel {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* Realistic Ribbon & Powder Blast Celebration */
+.confetti-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.confetti-ribbon {
+    position: absolute;
+    width: 15px;
+    /* Larger */
+    height: 40px;
+    /* Longer */
+    background: var(--primary-yellow);
+    opacity: 1;
+    /* Start Visible */
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    /* More contrast shadow */
+    transform-style: preserve-3d;
+    z-index: 10002;
+    /* Ensure on top */
+}
+
+.confetti-powder {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    filter: blur(2px);
+    opacity: 0;
+}
+
+@keyframes ribbonBlast {
+    0% {
+        transform: translate(0, 0) rotate3d(1, 1, 1, 0deg) scale(0.5);
+        opacity: 1;
+    }
+
+    20% {
+        transform: translate(var(--tx), -20vh) rotate3d(1, 1, 1, 120deg) scale(1.5);
+    }
+
+    100% {
+        transform: translate(var(--tx), 120vh) rotate3d(1, 1, 1, 1000deg) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes powderBlast {
+    0% {
+        transform: translate(0, 0) scale(0.5);
+        opacity: 0.8;
+    }
+
+    40% {
+        transform: translate(var(--tx), var(--ty)) scale(1.5);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(0);
+        opacity: 0;
     }
 }

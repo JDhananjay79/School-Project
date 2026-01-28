@@ -37,7 +37,7 @@
             <ul class="nav-links">
                 <li><a href="index.html#home">Home</a></li>
                 <li><a href="index.html#about">About Us</a></li>
-                <li><a href="index.html#programs">Programs</a></li>
+                <li><a href="index.html#events">Programs</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="#contact" class="btn-purple">Contact Us</a></li>
             </ul>
@@ -92,16 +92,11 @@
         </div>
 
         <!-- Download Brochure Button (Absolute Bottom Center) -->
-        <div style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 10;">
-            <a href="assets/Dhananjay%20Jagtap_QA.pdf" download="School_Brochure" class="btn-primary"
-                id="downloadBrochureBtn"
+        <!-- Download/View Brochure Button (Absolute Bottom Center) -->
+        <div style="position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%); z-index: 10;">
+            <a href="assets/Dhananjay%20Jagtap_QA.pdf" target="_blank" class="btn-primary" id="downloadBrochureBtn"
                 style="background-color: #FF4B01; color: white; display: inline-flex; align-items: center; gap: 8px;">
-                <span>Download Brochure</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                    <polyline points="7 10 12 15 17 10"></polyline>
-                    <line x1="12" y1="15" x2="12" y2="3"></line>
-                </svg>
+                <span>View Brochure</span>
             </a>
         </div>
     </header>
@@ -276,42 +271,46 @@
                 <p>Cherishing moments of joy, achievement, and togetherness.</p>
             </div>
 
-            <div class="events-scroll">
-                <!-- Event 1 -->
-                <a href="gallery.html#cultural" class="event-card">
-                    <img src="assets/images/activity.jpg" alt="Annual Day">
-                    <div class="event-info">
-                        <h3>Annual Cultural Fest</h3>
-                        <span>Celebrating talent and creativity on stage.</span>
-                    </div>
-                </a>
+            <div style="position: relative;">
+                <button class="events-nav-btn prev" aria-label="Previous">&lt;</button>
+                <div class="events-scroll">
+                    <!-- Events content remains -->
+                    <a href="gallery.html#cultural" class="event-card">
+                        <img src="assets/images/activity.jpg" alt="Annual Day">
+                        <div class="event-info">
+                            <h3>Annual Cultural Fest</h3>
+                            <span>Celebrating talent and creativity on stage.</span>
+                        </div>
+                    </a>
 
-                <!-- Event 2 -->
-                <a href="gallery.html#sports" class="event-card">
-                    <img src="assets/images/preschool_yellow_black_v2.png" alt="Sports Meet">
-                    <div class="event-info">
-                        <h3>Annual Sports Meet</h3>
-                        <span>Fast, focused, and full of team spirit.</span>
-                    </div>
-                </a>
+                    <!-- Event 2 -->
+                    <a href="gallery.html#sports" class="event-card">
+                        <img src="assets/images/preschool_yellow_black_v2.png" alt="Sports Meet">
+                        <div class="event-info">
+                            <h3>Annual Sports Meet</h3>
+                            <span>Fast, focused, and full of team spirit.</span>
+                        </div>
+                    </a>
 
-                <!-- Event 3 -->
-                <a href="gallery.html#activities" class="event-card">
-                    <img src="assets/images/illustration.jpg" alt="Science Fair">
-                    <div class="event-info">
-                        <h3>Inno-Science Exhibition</h3>
-                        <span>Little scientists exploring big ideas.</span>
-                    </div>
-                </a>
+                    <!-- Event 3 -->
+                    <a href="gallery.html#activities" class="event-card">
+                        <img src="assets/images/illustration.jpg" alt="Science Fair">
+                        <div class="event-info">
+                            <h3>Inno-Science Exhibition</h3>
+                            <span>Little scientists exploring big ideas.</span>
+                        </div>
+                    </a>
 
-                <!-- Event 4 -->
-                <a href="gallery.html#activities" class="event-card">
-                    <img src="assets/images/outdoor_yellow_uniform.png" alt="School Trip">
-                    <div class="event-info">
-                        <h3>Outdoor Learning Trip</h3>
-                        <span>Experiencing nature and building bonds.</span>
-                    </div>
-                </a>
+                    <!-- Event 4 -->
+                    <a href="gallery.html#activities" class="event-card">
+                        <img src="assets/images/outdoor_yellow_uniform.png" alt="School Trip">
+                        <div class="event-info">
+                            <h3>Outdoor Learning Trip</h3>
+                            <span>Experiencing nature and building bonds.</span>
+                        </div>
+                    </a>
+                </div>
+                <button class="events-nav-btn next" aria-label="Next">&gt;</button>
             </div>
         </div>
     </section>
@@ -380,6 +379,20 @@
             </div>
         </div>
     </footer>
+
+    <!-- Frozen Notification Bar -->
+    <div class="notification-bar">
+        <div class="notification-content">
+            <span class="notification-text">ADMISSIONS OPEN FOR 2026-27</span>
+            <span class="notification-text">ADMISSIONS OPEN FOR 2026-27</span>
+            <span class="notification-text">ADMISSIONS OPEN FOR 2026-27</span>
+            <span class="notification-text">ADMISSIONS OPEN FOR 2026-27</span>
+            <span class="notification-text">ADMISSIONS OPEN FOR 2026-27</span>
+            <span class="notification-text">ADMISSIONS OPEN FOR 2026-27</span>
+            <span class="notification-text">ADMISSIONS OPEN FOR 2026-27</span>
+            <span class="notification-text">ADMISSIONS OPEN FOR 2026-27</span>
+        </div>
+    </div>
 
     <script src="script.js"></script>
     <script>
