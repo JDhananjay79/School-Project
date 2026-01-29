@@ -24,34 +24,45 @@ document.addEventListener('DOMContentLoaded', () => {
     // Admission Form Logic
     const gradeSelect = document.getElementById('gradeSelect');
     const firstNameInput = document.getElementById('firstNameInput');
+    const middleNameInput = document.getElementById('middleNameInput');
     const lastNameInput = document.getElementById('lastNameInput');
+    const ageInput = document.getElementById('ageInput');
     const mobileInput = document.getElementById('mobileInput');
-    const downloadBrochureBtn = document.getElementById('downloadBrochureBtn'); // New ID required in HTML
+    const downloadBrochureBtn = document.getElementById('downloadBrochureBtn');
 
     if (gradeSelect && firstNameInput && lastNameInput && mobileInput) {
         // Initially disable name fields
         firstNameInput.disabled = true;
+        middleNameInput.disabled = true;
         lastNameInput.disabled = true;
         firstNameInput.style.opacity = '0.6';
+        middleNameInput.style.opacity = '0.6';
         lastNameInput.style.opacity = '0.6';
         firstNameInput.style.cursor = 'not-allowed';
+        middleNameInput.style.cursor = 'not-allowed';
         lastNameInput.style.cursor = 'not-allowed';
 
         // Enable name inputs only when a grade is selected
         gradeSelect.addEventListener('change', () => {
             if (gradeSelect.value !== "") {
                 firstNameInput.disabled = false;
+                middleNameInput.disabled = false;
                 lastNameInput.disabled = false;
                 firstNameInput.style.opacity = '1';
+                middleNameInput.style.opacity = '1';
                 lastNameInput.style.opacity = '1';
                 firstNameInput.style.cursor = 'text';
+                middleNameInput.style.cursor = 'text';
                 lastNameInput.style.cursor = 'text';
             } else {
                 firstNameInput.disabled = true;
+                middleNameInput.disabled = true;
                 lastNameInput.disabled = true;
                 firstNameInput.style.opacity = '0.6';
+                middleNameInput.style.opacity = '0.6';
                 lastNameInput.style.opacity = '0.6';
                 firstNameInput.style.cursor = 'not-allowed';
+                middleNameInput.style.cursor = 'not-allowed';
                 lastNameInput.style.cursor = 'not-allowed';
             }
         });
@@ -98,13 +109,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Get Values
                 const grade = gradeSelect.value;
                 const firstName = firstNameInput.value;
+                const middleName = middleNameInput.value || ''; // Optional
                 const lastName = lastNameInput.value;
+                const age = ageInput.value || ''; // Optional
                 const mobile = mobileInput.value;
                 const email = document.querySelector('input[type="email"]').value;
 
                 // Basic Validation
                 if (!grade || !firstName || !lastName || !mobile || !email) {
-                    alert('Please fill in all fields.');
+                    alert('Please fill in all required fields.');
                     return;
                 }
 
@@ -115,8 +128,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Prepare data for Google Sheets (Keys must match Headers in Sheet)
                 const formData = new FormData();
-                formData.append('Student Name', `${firstName} ${lastName}`);
+                const fullName = middleName ? `${firstName} ${middleName} ${lastName}` : `${firstName} ${lastName}`;
+                formData.append('Student Name', fullName);
                 formData.append('Grade', grade);
+                formData.append('Age', age);
                 formData.append('Mobile', mobile);
                 formData.append('Email', email);
 
@@ -133,7 +148,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     body: new URLSearchParams(formData)
                 })
                     .then(response => {
-                        if (!response.ok) throw new Error('Response error');
+
+
+                        if (!response.ok) throw new Error('Network response was not ok');
+
                         return response.json();
                     })
                     .then(data => {
@@ -141,23 +159,31 @@ document.addEventListener('DOMContentLoaded', () => {
                         submitBtn.disabled = false;
 
                         if (data.result === 'duplicate') {
-                            // 1. DUPLICATE FOUND
-                            alert("You’ve already submitted an enquiry with this mobile number 😊\nOur team will contact you soon!");
-                        } else {
-                            // 2. SUCCESS
+
+
+                            // DUPLICATE FOUND - Show validation message
+                            const duplicateField = data.field || 'mobile number';
+                            alert(`You've already submitted an enquiry with this ${duplicateField} 😊\nOur team will contact you soon!`);
+                        } else if (data.result === 'success') {
+                            // SUCCESS - New entry added
+
                             isFormSubmitted = true;
                             alert("Thank you! Your enquiry has been sent. You can now view the brochure.");
                             createConfettiExplosion();
+                        } else {
+                            // Unknown response
+                            throw new Error(data.message || 'Unknown error');
                         }
                     })
                     .catch(error => {
-                        // This block runs if there's a Network error or the Script is slow
-                        console.error('Final Submission fallback:', error);
+
+                        // Network error or script timeout
+                        console.error('Submission error:', error);
                         submitBtn.innerHTML = originalBtnText;
                         submitBtn.disabled = false;
 
-                        // Support existing flow: If there's a CORS issue but data was potentially saved,
-                        // we allow the user to proceed to the brochure.
+                        // Fallback: Allow user to proceed (optimistic UX)
+
                         isFormSubmitted = true;
                         alert("Thank you! Your enquiry has been processed. You can now view the brochure.");
                         createConfettiExplosion();
