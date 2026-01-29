@@ -24,34 +24,45 @@ document.addEventListener('DOMContentLoaded', () => {
     // Admission Form Logic
     const gradeSelect = document.getElementById('gradeSelect');
     const firstNameInput = document.getElementById('firstNameInput');
+    const middleNameInput = document.getElementById('middleNameInput');
     const lastNameInput = document.getElementById('lastNameInput');
+    const ageInput = document.getElementById('ageInput');
     const mobileInput = document.getElementById('mobileInput');
-    const downloadBrochureBtn = document.getElementById('downloadBrochureBtn'); // New ID required in HTML
+    const downloadBrochureBtn = document.getElementById('downloadBrochureBtn');
 
     if (gradeSelect && firstNameInput && lastNameInput && mobileInput) {
         // Initially disable name fields
         firstNameInput.disabled = true;
+        middleNameInput.disabled = true;
         lastNameInput.disabled = true;
         firstNameInput.style.opacity = '0.6';
+        middleNameInput.style.opacity = '0.6';
         lastNameInput.style.opacity = '0.6';
         firstNameInput.style.cursor = 'not-allowed';
+        middleNameInput.style.cursor = 'not-allowed';
         lastNameInput.style.cursor = 'not-allowed';
 
         // Enable name inputs only when a grade is selected
         gradeSelect.addEventListener('change', () => {
             if (gradeSelect.value !== "") {
                 firstNameInput.disabled = false;
+                middleNameInput.disabled = false;
                 lastNameInput.disabled = false;
                 firstNameInput.style.opacity = '1';
+                middleNameInput.style.opacity = '1';
                 lastNameInput.style.opacity = '1';
                 firstNameInput.style.cursor = 'text';
+                middleNameInput.style.cursor = 'text';
                 lastNameInput.style.cursor = 'text';
             } else {
                 firstNameInput.disabled = true;
+                middleNameInput.disabled = true;
                 lastNameInput.disabled = true;
                 firstNameInput.style.opacity = '0.6';
+                middleNameInput.style.opacity = '0.6';
                 lastNameInput.style.opacity = '0.6';
                 firstNameInput.style.cursor = 'not-allowed';
+                middleNameInput.style.cursor = 'not-allowed';
                 lastNameInput.style.cursor = 'not-allowed';
             }
         });
@@ -98,13 +109,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Get Values
                 const grade = gradeSelect.value;
                 const firstName = firstNameInput.value;
+                const middleName = middleNameInput.value || ''; // Optional
                 const lastName = lastNameInput.value;
+                const age = ageInput.value || ''; // Optional
                 const mobile = mobileInput.value;
                 const email = document.querySelector('input[type="email"]').value;
 
                 // Basic Validation
                 if (!grade || !firstName || !lastName || !mobile || !email) {
-                    alert('Please fill in all fields.');
+                    alert('Please fill in all required fields.');
                     return;
                 }
 
@@ -115,8 +128,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Prepare data for Google Sheets (Keys must match Headers in Sheet)
                 const formData = new FormData();
-                formData.append('Student Name', `${firstName} ${lastName}`);
+                const fullName = middleName ? `${firstName} ${middleName} ${lastName}` : `${firstName} ${lastName}`;
+                formData.append('Student Name', fullName);
                 formData.append('Grade', grade);
+                formData.append('Age', age);
                 formData.append('Mobile', mobile);
                 formData.append('Email', email);
 
@@ -129,40 +144,39 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Send to Google Sheets
                 fetch(scriptURL, {
                     method: 'POST',
-                    body: formData,
-                    // Note: Removing 'no-cors' to read the duplicate validation response.
-                    // Apps Script must return JSON using ContentService to work with this.
+                    mode: 'cors',
+                    body: new URLSearchParams(formData)
                 })
-                    .then(response => response.json())
+                    .then(response => {
+                        if (!response.ok) throw new Error('Network response was not ok');
+                        return response.json();
+                    })
                     .then(data => {
                         // Restore button
                         submitBtn.innerHTML = originalBtnText;
                         submitBtn.disabled = false;
 
                         if (data.result === 'duplicate') {
-                            // Show the specific validation message for duplicates
-                            alert("You’ve already submitted an enquiry with this mobile number 😊\nOur team will contact you soon!");
-                        } else {
-                            // Mark as submitted
+                            // DUPLICATE FOUND - Show validation message
+                            const duplicateField = data.field || 'mobile number';
+                            alert(`You've already submitted an enquiry with this ${duplicateField} 😊\nOur team will contact you soon!`);
+                        } else if (data.result === 'success') {
+                            // SUCCESS - New entry added
                             isFormSubmitted = true;
-
-                            // Notify user immediately
                             alert("Thank you! Your enquiry has been sent. You can now view the brochure.");
-
-                            // CELEBRATION!
                             createConfettiExplosion();
+                        } else {
+                            // Unknown response
+                            throw new Error(data.message || 'Unknown error');
                         }
                     })
                     .catch(error => {
-                        // Support for 'no-cors' fallback if user hasn't updated Apps Script yet
-                        // or if there's a strict CORS policy on the new script.
-                        console.error('Submission handled:', error);
-
-                        // Restore button
+                        // Network error or script timeout
+                        console.error('Submission error:', error);
                         submitBtn.innerHTML = originalBtnText;
                         submitBtn.disabled = false;
 
-                        // Trigger success anyway to reduce user friction (Optimistic UX)
+                        // Fallback: Allow user to proceed (optimistic UX)
                         isFormSubmitted = true;
                         alert("Thank you! Your enquiry has been processed. You can now view the brochure.");
                         createConfettiExplosion();
