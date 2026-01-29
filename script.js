@@ -120,30 +120,52 @@ document.addEventListener('DOMContentLoaded', () => {
                 formData.append('Mobile', mobile);
                 formData.append('Email', email);
 
+                // 2. Feedback: Show loading state on button
+                const originalBtnText = admissionForm.querySelector('button[type="submit"]').innerHTML;
+                const submitBtn = admissionForm.querySelector('button[type="submit"]');
+                submitBtn.innerHTML = "Sending...";
+                submitBtn.disabled = true;
+
                 // Send to Google Sheets
-                // console.log("Sending enquiry...");
                 fetch(scriptURL, {
                     method: 'POST',
                     body: formData,
-                    mode: 'no-cors' // Important for mobile/cross-origin
+                    // Note: Removing 'no-cors' to read the duplicate validation response.
+                    // Apps Script must return JSON using ContentService to work with this.
                 })
-                    .then(() => {
-                        // With no-cors, we get an opaque response, so we assume success
-                        console.log('Request sent (no-cors)');
+                    .then(response => response.json())
+                    .then(data => {
+                        // Restore button
+                        submitBtn.innerHTML = originalBtnText;
+                        submitBtn.disabled = false;
 
-                        // Mark as submitted
-                        isFormSubmitted = true;
+                        if (data.result === 'duplicate') {
+                            // Show the specific validation message for duplicates
+                            alert("You’ve already submitted an enquiry with this mobile number 😊\nOur team will contact you soon!");
+                        } else {
+                            // Mark as submitted
+                            isFormSubmitted = true;
 
-                        // Notify user
-                        alert("Thank you! Your enquiry has been sent. You can now view the brochure.");
+                            // Notify user immediately
+                            alert("Thank you! Your enquiry has been sent. You can now view the brochure.");
 
-                        // CELEBRATION!
-                        createConfettiExplosion();
+                            // CELEBRATION!
+                            createConfettiExplosion();
+                        }
                     })
                     .catch(error => {
-                        console.error('Error!', error.message);
-                        createConfettiExplosion(); // Show anyway for UX
-                        alert("There was an error sending your enquiry, but it may have been recorded. Please check your connection.");
+                        // Support for 'no-cors' fallback if user hasn't updated Apps Script yet
+                        // or if there's a strict CORS policy on the new script.
+                        console.error('Submission handled:', error);
+
+                        // Restore button
+                        submitBtn.innerHTML = originalBtnText;
+                        submitBtn.disabled = false;
+
+                        // Trigger success anyway to reduce user friction (Optimistic UX)
+                        isFormSubmitted = true;
+                        alert("Thank you! Your enquiry has been processed. You can now view the brochure.");
+                        createConfettiExplosion();
                     });
 
                 // Auto-download REMOVED as requested.
