@@ -129,40 +129,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Send to Google Sheets
                 fetch(scriptURL, {
                     method: 'POST',
-                    body: formData,
-                    // Note: Removing 'no-cors' to read the duplicate validation response.
-                    // Apps Script must return JSON using ContentService to work with this.
+                    mode: 'cors',
+                    body: new URLSearchParams(formData)
                 })
-                    .then(response => response.json())
+                    .then(response => {
+                        if (!response.ok) throw new Error('Response error');
+                        return response.json();
+                    })
                     .then(data => {
-                        // Restore button
                         submitBtn.innerHTML = originalBtnText;
                         submitBtn.disabled = false;
 
                         if (data.result === 'duplicate') {
-                            // Show the specific validation message for duplicates
+                            // 1. DUPLICATE FOUND
                             alert("You’ve already submitted an enquiry with this mobile number 😊\nOur team will contact you soon!");
                         } else {
-                            // Mark as submitted
+                            // 2. SUCCESS
                             isFormSubmitted = true;
-
-                            // Notify user immediately
                             alert("Thank you! Your enquiry has been sent. You can now view the brochure.");
-
-                            // CELEBRATION!
                             createConfettiExplosion();
                         }
                     })
                     .catch(error => {
-                        // Support for 'no-cors' fallback if user hasn't updated Apps Script yet
-                        // or if there's a strict CORS policy on the new script.
-                        console.error('Submission handled:', error);
-
-                        // Restore button
+                        // This block runs if there's a Network error or the Script is slow
+                        console.error('Final Submission fallback:', error);
                         submitBtn.innerHTML = originalBtnText;
                         submitBtn.disabled = false;
 
-                        // Trigger success anyway to reduce user friction (Optimistic UX)
+                        // Support existing flow: If there's a CORS issue but data was potentially saved,
+                        // we allow the user to proceed to the brochure.
                         isFormSubmitted = true;
                         alert("Thank you! Your enquiry has been processed. You can now view the brochure.");
                         createConfettiExplosion();
