@@ -54,11 +54,17 @@
             <div class="hero-text">
                 <h1>Where Learning Meets <span class="highlight-orange">Fun</span> & <span
                         class="highlight-orange">Creativity</span></h1>
-                <p>We provide a safe, nurturing, and colorful environment for your child to grow, learn, and explore the
-                    world.</p>
-                <div class="hero-buttons">
-                    <a href="#about" class="btn-primary">Learn More</a>
-                    <a href="#contact" class="btn-purple">Admissions Open</a>
+
+                <!-- Vision & Mission cards inline below heading -->
+                <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 200px; background-color: #FF4B01; color: white; border-radius: 16px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(255,75,1,0.3);">
+                        <h3 style="color: white; font-size: 1.3rem; margin-bottom: 0.5rem;">🌟 Our Vision</h3>
+                        <p style="color: white; font-size: 0.95rem; margin: 0; line-height: 1.5;">To nurture happy, confident, and curious children who develop a lifelong love for learning.</p>
+                    </div>
+                    <div style="flex: 1; min-width: 200px; background-color: var(--primary-purple); color: white; border-radius: 16px; padding: 1.5rem; box-shadow: 0 4px 15px rgba(107,16,156,0.3);">
+                        <h3 style="color: white; font-size: 1.3rem; margin-bottom: 0.5rem;">🎯 Our Mission</h3>
+                        <p style="color: white; font-size: 0.95rem; margin: 0; line-height: 1.5;">To provide a safe, caring, and playful environment where children learn, explore, and grow through meaningful early childhood experiences.</p>
+                    </div>
                 </div>
             </div>
 
@@ -89,52 +95,16 @@
                             <input type="email" placeholder="Email" class="form-input">
                         </div>
                         <button type="submit" class="btn-submit">Send Enquiry</button>
+                        <a href="assets/Dhananjay%20Jagtap_QA.pdf" target="_blank" id="downloadBrochureBtn"
+                            style="width: 100%; background-color: #FF4B01; color: white; border: none; padding: 14px; border-radius: 50px; font-weight: 700; cursor: pointer; font-size: 1.1rem; transition: all 0.3s; margin-top: 1rem; font-family: var(--font-heading); box-shadow: 0 4px 15px rgba(255,75,1,0.4); display: flex; align-items: center; justify-content: center; text-decoration: none;">
+                            View Brochure
+                        </a>
                     </form>
                 </div>
             </div>
         </div>
-
-        <!-- Download Brochure Button (Absolute Bottom Center) -->
-        <!-- Download/View Brochure Button (Absolute Bottom Center) -->
-        <div style="position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%); z-index: 10;">
-            <a href="assets/Dhananjay%20Jagtap_QA.pdf" target="_blank" class="btn-primary" id="downloadBrochureBtn"
-                style="background-color: #FF4B01; color: white; display: inline-flex; align-items: center; gap: 8px;">
-                <span>View Brochure</span>
-            </a>
-        </div>
     </header>
 
-    <!-- Features Section -->
-    <section id="features" class="section-padding">
-        <div class="container">
-            <div class="section-header text-center">
-                <h2>Why Choose Us?</h2>
-                <p>We focus on holistic development through modern teaching methodologies.</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card scroll-reveal">
-                    <div class="icon-circle bg-purple">📚</div>
-                    <h3>Quality Education</h3>
-                    <p>Curriculum designed to foster critical thinking and creativity from an early age.</p>
-                </div>
-                <div class="feature-card scroll-reveal" style="transition-delay: 100ms;">
-                    <div class="icon-circle bg-orange">🎨</div>
-                    <h3>Creative Arts</h3>
-                    <p>Encouraging expression through painting, music, and craft activities.</p>
-                </div>
-                <div class="feature-card scroll-reveal" style="transition-delay: 200ms;">
-                    <div class="icon-circle bg-red">🤸</div>
-                    <h3>Physical Activity</h3>
-                    <p>Large playground and structured physical education for healthy growth.</p>
-                </div>
-                <div class="feature-card scroll-reveal" style="transition-delay: 300ms;">
-                    <div class="icon-circle bg-yellow">🛡️</div>
-                    <h3>Safe Environment</h3>
-                    <p>CCTV surveillance and trained staff ensuring complete safety for your child.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- About Section -->
     <section id="about" class="section-padding bg-light">
@@ -278,7 +248,7 @@
                 <button class="events-nav-btn prev" aria-label="Previous">&lt;</button>
                 <div class="events-scroll">
                     <!-- Events content remains -->
-                    <a href="gallery.html#cultural" class="event-card">
+                    <a href="gallery-cultural.html" class="event-card">
                         <img src="assets/images/activity.jpg" alt="Annual Day">
                         <div class="event-info">
                             <h3>Annual Cultural Fest</h3>
@@ -287,7 +257,7 @@
                     </a>
 
                     <!-- Event 2 -->
-                    <a href="gallery.html#sports" class="event-card">
+                    <a href="gallery-sports.html" class="event-card">
                         <img src="assets/images/preschool_yellow_black_v2.png" alt="Sports Meet">
                         <div class="event-info">
                             <h3>Annual Sports Meet</h3>
@@ -296,7 +266,7 @@
                     </a>
 
                     <!-- Event 3 -->
-                    <a href="gallery.html#activities" class="event-card">
+                    <a href="gallery-activities.html" class="event-card">
                         <img src="assets/images/illustration.jpg" alt="Science Fair">
                         <div class="event-info">
                             <h3>Inno-Science Exhibition</h3>
@@ -305,7 +275,7 @@
                     </a>
 
                     <!-- Event 4 -->
-                    <a href="gallery.html#activities" class="event-card">
+                    <a href="gallery-activities.html" class="event-card">
                         <img src="assets/images/outdoor_yellow_uniform.png" alt="School Trip">
                         <div class="event-info">
                             <h3>Outdoor Learning Trip</h3>
@@ -349,7 +319,7 @@
                                     <path
                                         d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z" />
                                 </svg>
-                                <span>Adarsh Nagar , Dighi, Pune - 411015</span>
+                                <span>Sahyadri Colony, Adarsh Nagar, Dighi, Pune - 411015</span>
                             </a>
                         </li>
                         <li>
@@ -361,6 +331,17 @@
                                         d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 0 0-1.02.24l-2.2 2.2a15.045 15.045 0 0 1-6.59-6.59l2.2-2.21a.96.96 0 0 0 .25-1.02A11.36 11.36 0 0 1 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM19 12h2a9 9 0 0 0-9-9v2c3.87 0 7 3.13 7 7zm-4 0h2c0-2.76-2.24-5-5-5v2c1.66 0 3 1.34 3 3z" />
                                 </svg>
                                 <span>+91 9822531127</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="tel:+919579958881"
+                                style="display: flex; align-items: center; gap: 10px; color: inherit;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                    fill="var(--primary-yellow)">
+                                    <path
+                                        d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 0 0-1.02.24l-2.2 2.2a15.045 15.045 0 0 1-6.59-6.59l2.2-2.21a.96.96 0 0 0 .25-1.02A11.36 11.36 0 0 1 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM19 12h2a9 9 0 0 0-9-9v2c3.87 0 7 3.13 7 7zm-4 0h2c0-2.76-2.24-5-5-5v2c1.66 0 3 1.34 3 3z" />
+                                </svg>
+                                <span>+91 9579958881</span>
                             </a>
                         </li>
                         <li>
