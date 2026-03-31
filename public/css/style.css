@@ -267,9 +267,13 @@ p {
 }
 
 .logo img {
-    height: 55px;
-    width: auto;
+    height: 70px;
+    width: 70px;
     border-radius: 50%;
+    object-fit: contain;
+    background-color: white;
+    padding: 4px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
 .logo span {
@@ -726,10 +730,14 @@ p {
 }
 
 .footer-logo img {
-    height: 60px;
-    border-radius: 50%;
+    height: 70px;
+    width: 70px;
     margin-bottom: 1rem;
-    border: 2px solid var(--white);
+    border-radius: 50%;
+    object-fit: contain;
+    background: white;
+    padding: 4px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
 
 .footer-logo h3 {
@@ -1073,18 +1081,34 @@ p {
         text-align: center;
     }
 
+    /* Dissolve hero-text box so h1 and #vision-mission become direct flex children */
     .hero-text {
+        display: contents;
+    }
+
+    /* Order: 1 = h1 heading, 2 = form, 3 = vision/mission */
+    .hero-text h1 {
+        order: 1;
+        width: 100%;
         max-width: 100%;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    .hero-form {
+        order: 2;
+        width: 100%;
+        max-width: 500px;
+    }
+
+    #vision-mission {
+        order: 3;
+        width: 100%;
+        margin-top: 1.5rem;
     }
 
     .hero-buttons {
         justify-content: center;
-    }
-
-    .hero-form {
-        width: 100%;
-        max-width: 500px;
     }
 }
 

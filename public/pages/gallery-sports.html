@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -11,13 +11,13 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg">
+    <link rel="icon" type="image/jpeg" href="../assets/images/logo.jpg">
     <link
         href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <style>
         /* Gallery Specific Styles */
         .gallery-hero {
@@ -80,7 +80,12 @@
             text-shadow: 0 4px 15px rgba(255, 255, 255, 0.6);
         }
 
-
+        /* Removed colored underlines */
+        #cultural .gallery-title-wrapper h2,
+        #sports .gallery-title-wrapper h2,
+        #activities .gallery-title-wrapper h2 {
+            /* Inherit color from JS or CSS variable if needed, but primarily relying on main styles */
+        }
 
         /* Carousel Styles */
         .carousel-wrapper {
@@ -343,68 +348,10 @@
 </head>
 
 <body>
-    <!-- Train Transition Overlay -->
-    <div class="train-transition-overlay">
-        <div class="train-scene">
-            <div class="sky-cloud cloud-1"></div>
-            <div class="sky-cloud cloud-2"></div>
-            <div class="sky-cloud cloud-3"></div>
-            <div class="bird bird-1"></div>
-            <div class="bird bird-2"></div>
-            <div class="airplane">
-                <div class="plane-body">
-                    <div class="plane-window-strip">
-                        <span></span><span></span><span></span><span></span>
-                    </div>
-                </div>
-                <div class="plane-wing"></div>
-                <div class="plane-tail"></div>
-            </div>
-        </div>
-        <div class="train-container">
-            <div class="train-wagon wagon-5">
-                <div class="train-window"></div>
-                <div class="train-wheel"></div>
-                <div class="train-wheel"></div>
-            </div>
-            <div class="train-wagon wagon-4">
-                <div class="train-window"></div>
-                <div class="train-wheel"></div>
-                <div class="train-wheel"></div>
-            </div>
-            <div class="train-wagon wagon-3">
-                <div class="train-window"></div>
-                <div class="train-wheel"></div>
-                <div class="train-wheel"></div>
-            </div>
-            <div class="train-wagon wagon-2">
-                <div class="train-window"></div>
-                <div class="train-wheel"></div>
-                <div class="train-wheel"></div>
-            </div>
-            <div class="train-wagon wagon-1">
-                <div class="train-window"></div>
-                <div class="train-wheel"></div>
-                <div class="train-wheel"></div>
-            </div>
-            <div class="train-engine">
-                <div class="engine-window"></div>
-                <div class="chimney">
-                    <div class="smoke"></div>
-                    <div class="smoke"></div>
-                </div>
-                <div class="train-wheel"></div>
-                <div class="train-wheel"></div>
-                <div class="train-light"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="logo">
-                <img src="assets/images/logo.jpg" alt="Happy English Medium School Logo">
+            <a href="../index.html" class="logo">
+                <img src="../assets/images/school-logo.png" alt="Happy English Medium School Logo">
                 <span>Happy English Medium School</span>
             </a>
             <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
@@ -413,11 +360,11 @@
                 <span class="bar"></span>
             </button>
             <ul class="nav-links">
-                <li><a href="index.html#home">Home</a></li>
-                <li><a href="index.html#about">About Us</a></li>
-                <li><a href="index.html#events">Programs</a></li>
+                <li><a href="../index.html#home">Home</a></li>
+                <li><a href="../index.html#about">About Us</a></li>
+                <li><a href="../index.html#events">Programs</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="index.html#contact" class="btn-purple">Contact Us</a></li>
+                <li><a href="../index.html#contact" class="btn-purple">Contact Us</a></li>
             </ul>
         </div>
     </nav>
@@ -425,8 +372,8 @@
     <!-- Header -->
     <header class="gallery-hero">
         <div class="container">
-            <h1>Tiny Traditions Festival</h1>
-            <p>Celebrating our culture and heritage.</p>
+            <h1>Annual Sports Meet</h1>
+            <p>Fostering team spirit, resilience, and healthy competition.</p>
         </div>
     </header>
 
@@ -435,9 +382,9 @@
     <section class="section-padding">
         <div class="container">
             <div class="gallery-grid">
-                <div class="gallery-item"><img src="assets/images/gallery/traditions_1.jpg" alt="Tiny Traditions 1"></div>
-                <div class="gallery-item"><img src="assets/images/gallery/traditions_2.jpg" alt="Tiny Traditions 2"></div>
-                <div class="gallery-item"><img src="assets/images/tiny_traditions.jpg" alt="Tiny Traditions 3"></div>
+                <div class="gallery-item"><img src="../assets/images/sports_meet_1.jpg" alt="Annual Sports Meet 1"></div>
+                <div class="gallery-item"><img src="../assets/images/sports_meet_2.jpg" alt="Annual Sports Meet 2"></div>
+                <div class="gallery-item"><img src="../assets/images/sports_meet_3.jpg" alt="Annual Sports Meet 3"></div>
             </div>
             <div class="text-center" style="margin-top: 3rem;">
                 <a href="gallery.html" class="btn-primary">&larr; Back to Gallery</a>
@@ -450,7 +397,7 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <img src="assets/images/logo.jpg" alt="Logo">
+                        <img src="../assets/images/school-logo.png" alt="Logo">
                         <h3>Happy English Medium School</h3>
                     </div>
                     <p>Fostering a love for learning in a happy environment.</p>
@@ -458,9 +405,9 @@
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="index.html#home">Home</a></li>
-                        <li><a href="index.html#about">About</a></li>
-                        <li><a href="index.html#programs">Admissions</a></li>
+                        <li><a href="../index.html#home">Home</a></li>
+                        <li><a href="../index.html#about">About</a></li>
+                        <li><a href="../index.html#home">Admissions</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
                     </ul>
                 </div>
@@ -501,14 +448,14 @@
                             </a>
                         </li>
                         <li>
-                            <a href="mailto:info@happyschool.edu"
+                            <a href="mailto:happyenglishmediumschool@gmail.com"
                                 style="display: flex; align-items: center; gap: 10px; color: inherit;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                     fill="var(--primary-yellow)">
                                     <path
                                         d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
                                 </svg>
-                                <span>info@happyschool.edu</span>
+                                <span>happyenglishmediumschool@gmail.com</span>
                             </a>
                         </li>
                     </ul>
@@ -534,7 +481,7 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
     <script>
         // Generate dynamic meteors for the physical space animation
         document.addEventListener('DOMContentLoaded', () => {
@@ -545,3 +492,7 @@
 </body>
 
 </html>
+
+
+
+

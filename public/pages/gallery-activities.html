@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -11,13 +11,13 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg">
+    <link rel="icon" type="image/jpeg" href="../assets/images/logo.jpg">
     <link
         href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <style>
         /* Gallery Specific Styles */
         .gallery-hero {
@@ -343,68 +343,10 @@
 </head>
 
 <body>
-    <!-- Train Transition Overlay -->
-    <div class="train-transition-overlay">
-        <div class="train-scene">
-            <div class="sky-cloud cloud-1"></div>
-            <div class="sky-cloud cloud-2"></div>
-            <div class="sky-cloud cloud-3"></div>
-            <div class="bird bird-1"></div>
-            <div class="bird bird-2"></div>
-            <div class="airplane">
-                <div class="plane-body">
-                    <div class="plane-window-strip">
-                        <span></span><span></span><span></span><span></span>
-                    </div>
-                </div>
-                <div class="plane-wing"></div>
-                <div class="plane-tail"></div>
-            </div>
-        </div>
-        <div class="train-container">
-            <div class="train-wagon wagon-5">
-                <div class="train-window"></div>
-                <div class="train-wheel"></div>
-                <div class="train-wheel"></div>
-            </div>
-            <div class="train-wagon wagon-4">
-                <div class="train-window"></div>
-                <div class="train-wheel"></div>
-                <div class="train-wheel"></div>
-            </div>
-            <div class="train-wagon wagon-3">
-                <div class="train-window"></div>
-                <div class="train-wheel"></div>
-                <div class="train-wheel"></div>
-            </div>
-            <div class="train-wagon wagon-2">
-                <div class="train-window"></div>
-                <div class="train-wheel"></div>
-                <div class="train-wheel"></div>
-            </div>
-            <div class="train-wagon wagon-1">
-                <div class="train-window"></div>
-                <div class="train-wheel"></div>
-                <div class="train-wheel"></div>
-            </div>
-            <div class="train-engine">
-                <div class="engine-window"></div>
-                <div class="chimney">
-                    <div class="smoke"></div>
-                    <div class="smoke"></div>
-                </div>
-                <div class="train-wheel"></div>
-                <div class="train-wheel"></div>
-                <div class="train-light"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="logo">
-                <img src="assets/images/logo.jpg" alt="Happy English Medium School Logo">
+            <a href="../index.html" class="logo">
+                <img src="../assets/images/school-logo.png" alt="Happy English Medium School Logo">
                 <span>Happy English Medium School</span>
             </a>
             <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
@@ -413,11 +355,11 @@
                 <span class="bar"></span>
             </button>
             <ul class="nav-links">
-                <li><a href="index.html#home">Home</a></li>
-                <li><a href="index.html#about">About Us</a></li>
-                <li><a href="index.html#events">Programs</a></li>
-                <li><a href="gallery.html" class="active">Gallery</a></li>
-                <li><a href="index.html#contact" class="btn-purple">Contact Us</a></li>
+                <li><a href="../index.html#home">Home</a></li>
+                <li><a href="../index.html#about">About Us</a></li>
+                <li><a href="../index.html#events">Programs</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="../index.html#contact" class="btn-purple">Contact Us</a></li>
             </ul>
         </div>
     </nav>
@@ -425,149 +367,33 @@
     <!-- Header -->
     <header class="gallery-hero">
         <div class="container">
-            <h1>Moments of Joy</h1>
-            <p>Capturing the vibrant energy and creative spirit of our wonderful students.</p>
+            <h1>Tiny Traditions Festival</h1>
+            <p>Celebrating our culture and heritage.</p>
         </div>
     </header>
 
-    <!-- Brainy Bubbles Section -->
-    <section id="brainy-bubbles" class="gallery-section">
+    
+    <!-- Grid -->
+    <section class="section-padding">
         <div class="container">
-            <div class="gallery-title-wrapper">
-                <h2>Brainy Bubbles</h2>
-                <p>Fun experiments and bubbling ideas.</p>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="../assets/images/gallery/traditions_1.jpg" alt="Tiny Traditions 1"></div>
+                <div class="gallery-item"><img src="../assets/images/gallery/traditions_2.jpg" alt="Tiny Traditions 2"></div>
+                                <div class="gallery-item"><img src="../assets/images/tiny_traditions.jpg" alt="Tiny Traditions 3"></div>
+                <div class="gallery-item"><img src="../assets/images/gallery/tiny_traditions_new_1.jpg" alt="Tiny Traditions 4"></div>
             </div>
-            <div class="carousel-wrapper" data-carousel>
-                <div class="carousel-main">
-                    <div class="carousel-slide active">
-                        <img src="assets/images/brainy_bubbles_new.jpg" alt="Brainy Bubbles">
-                        <div class="carousel-caption">
-                            <h3>Brainy Bubbles</h3>
-                            <p>Fun experiments and bubbling ideas.</p>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-nav prev">&lt;</button>
-                <button class="carousel-nav next">&gt;</button>
-                <div class="text-center" style="margin-top: 2rem; margin-bottom: 2rem; text-align: center;">
-                    <a href="gallery-brainy-bubbles.html" class="btn-primary">View Full Album</a>
-                </div>
+            <div class="text-center" style="margin-top: 3rem;">
+                <a href="gallery.html" class="btn-primary">&larr; Back to Gallery</a>
             </div>
         </div>
     </section>
-
-    <!-- Cultural Fest Section -->
-    <section id="cultural" class="gallery-section">
-        <div class="container">
-            <div class="gallery-title-wrapper">
-                <h2>Annual Cultural Fest</h2>
-                <p>A celebration of talent, traditional dance, and musical performances.</p>
-            </div>
-            <div class="carousel-wrapper" data-carousel>
-                <div class="carousel-main">
-                    <div class="carousel-slide active">
-                        <img src="assets/images/gallery/fest_vibrant.jpg" alt="Cultural Fest Dance">
-                        <div class="carousel-caption">
-                            <h3>Vibrant Performances</h3>
-                            <p>Students showcasing their dance skills on stage.</p>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-nav prev">&lt;</button>
-                <button class="carousel-nav next">&gt;</button>
-                <div class="text-center" style="margin-top: 2rem; margin-bottom: 2rem; text-align: center;">
-                    <a href="gallery-cultural.html" class="btn-primary">View Full Album</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sports Meet Section -->
-    <section id="sports" class="gallery-section">
-        <div class="container">
-            <div class="gallery-title-wrapper">
-                <h2>Annual Sports Meet</h2>
-                <p>Fostering team spirit, resilience, and healthy competition.</p>
-            </div>
-            <div class="carousel-wrapper" data-carousel>
-                <div class="carousel-main">
-                    <div class="carousel-slide active">
-                        <img src="assets/images/sports_meet_2.jpg" alt="Sports Race">
-                        <div class="carousel-caption">
-                            <h3>Sprint to Victory</h3>
-                            <p>Little athletes competing in our annual track events.</p>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-nav prev">&lt;</button>
-                <button class="carousel-nav next">&gt;</button>
-                <div class="text-center" style="margin-top: 2rem; margin-bottom: 2rem; text-align: center;">
-                    <a href="gallery-sports.html" class="btn-primary">View Full Album</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tiny Traditions Section -->
-    <section id="activities" class="gallery-section">
-        <div class="container">
-            <div class="gallery-title-wrapper">
-                <h2>Tiny Traditions Festival</h2>
-                <p>Celebrating our culture and heritage.</p>
-            </div>
-            <div class="carousel-wrapper" data-carousel>
-                <div class="carousel-main">
-                    <div class="carousel-slide active">
-                        <img src="assets/images/gallery/traditions_2.jpg"
-                            alt="Traditional Dance">
-                        <div class="carousel-caption">
-                            <h3>Vibrant Traditions</h3>
-                            <p>Beautiful performances showcasing our rich heritage.</p>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-nav prev">&lt;</button>
-                <button class="carousel-nav next">&gt;</button>
-                <div class="text-center" style="margin-top: 2rem; margin-bottom: 2rem; text-align: center;">
-                    <a href="gallery-activities.html" class="btn-primary">View Full Album</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Mini Activities Section -->
-    <section id="mini-activities" class="gallery-section">
-        <div class="container">
-            <div class="gallery-title-wrapper">
-                <h2>Mini Activities Masters</h2>
-                <p>Engaging little hands in big adventures.</p>
-            </div>
-            <div class="carousel-wrapper" data-carousel>
-                <div class="carousel-main">
-                    <div class="carousel-slide active">
-                        <img src="assets/images/mini_activities.jpg" alt="Mini Activities Masters">
-                        <div class="carousel-caption">
-                            <h3>Mini Activities</h3>
-                            <p>Hands-on activities tailored for the little ones.</p>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-nav prev">&lt;</button>
-                <button class="carousel-nav next">&gt;</button>
-                <div class="text-center" style="margin-top: 2rem; margin-bottom: 2rem; text-align: center;">
-                    <a href="gallery-mini-activities.html" class="btn-primary">View Full Album</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <img src="assets/images/logo.jpg" alt="Logo">
+                        <img src="../assets/images/school-logo.png" alt="Logo">
                         <h3>Happy English Medium School</h3>
                     </div>
                     <p>Fostering a love for learning in a happy environment.</p>
@@ -575,9 +401,9 @@
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="index.html#home">Home</a></li>
-                        <li><a href="index.html#about">About</a></li>
-                        <li><a href="index.html#programs">Admissions</a></li>
+                        <li><a href="../index.html#home">Home</a></li>
+                        <li><a href="../index.html#about">About</a></li>
+                        <li><a href="../index.html#home">Admissions</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
                     </ul>
                 </div>
@@ -618,14 +444,14 @@
                             </a>
                         </li>
                         <li>
-                            <a href="mailto:info@happyschool.edu"
+                            <a href="mailto:happyenglishmediumschool@gmail.com"
                                 style="display: flex; align-items: center; gap: 10px; color: inherit;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                     fill="var(--primary-yellow)">
                                     <path
                                         d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
                                 </svg>
-                                <span>info@happyschool.edu</span>
+                                <span>happyenglishmediumschool@gmail.com</span>
                             </a>
                         </li>
                     </ul>
@@ -651,7 +477,7 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
     <script>
         // Generate dynamic meteors for the physical space animation
         document.addEventListener('DOMContentLoaded', () => {
@@ -662,3 +488,11 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+
