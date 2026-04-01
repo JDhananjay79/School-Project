@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="School Brochure - Happy English Medium School">
+    <title>School Brochure | Happy English Medium School</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/jpeg" href="../assets/images/logo.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --orange: #FF4B01;
+            --purple: #6B109C;
+            --yellow: #FECA0B;
+            --topbar-h: 58px;
+            --font-h: 'Fredoka', sans-serif;
+            --font-b: 'Outfit', sans-serif;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            height: 100%;
+            font-family: var(--font-b);
+            background: #0c0118;
+            overflow: hidden; /* prevent scroll — everything fits viewport */
+        }
+
+        /* ── Animated starfield bg ── */
+        .bg-stars {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            background:
+                radial-gradient(ellipse at 15% 15%, #2a0858 0%, transparent 55%),
+                radial-gradient(ellipse at 85% 85%, #150030 0%, transparent 55%),
+                #0c0118;
+        }
+        .star {
+            position: fixed; border-radius: 50%; background: #fff;
+            animation: twinkle var(--d,3s) var(--dl,0s) infinite ease-in-out;
+        }
+        @keyframes twinkle {
+            0%,100%{ opacity:.12; transform:scale(1); }
+            50%    { opacity:.65; transform:scale(1.4); }
+        }
+
+        /* ══════════════════════════════
+           TOP BAR
+        ══════════════════════════════ */
+        .topbar {
+            position: fixed; top: 0; left: 0; right: 0;
+            height: var(--topbar-h);
+            z-index: 300;
+            display: flex; align-items: center;
+            justify-content: space-between;
+            padding: 0 1.25rem;
+            background: rgba(8,0,22,.88);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255,255,255,.07);
+        }
+
+        .logo-link {
+            display: flex; align-items: center; gap: .55rem;
+            text-decoration: none; flex-shrink: 0;
+        }
+        .logo-link img {
+            width: 36px; height: 36px; border-radius: 50%;
+            object-fit: cover; border: 2px solid var(--orange);
+        }
+        .logo-link span {
+            font-family: var(--font-h); color: #fff;
+            font-size: .9rem; font-weight: 600;
+        }
+
+        /* Right side of topbar */
+        .topbar-right {
+            display: flex; align-items: center; gap: .9rem; flex-shrink: 0;
+        }
+
+        .page-counter {
+            font-family: var(--font-h);
+            font-size: .9rem; color: rgba(255,255,255,.55);
+            white-space: nowrap;
+        }
+        .page-counter strong { color: var(--yellow); font-size: 1rem; }
+
+        .btn-pdf {
+            display: flex; align-items: center; gap: .4rem;
+            padding: .45rem 1.1rem;
+            border-radius: 50px; border: none;
+            background: linear-gradient(135deg, var(--orange) 0%, #ff6030 100%);
+            color: #fff; font-family: var(--font-h);
+            font-size: .88rem; font-weight: 700;
+            cursor: pointer; white-space: nowrap;
+            transition: all .25s ease;
+            box-shadow: 0 3px 14px rgba(255,75,1,.4);
+        }
+        .btn-pdf:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(255,75,1,.6); }
+        .btn-pdf:disabled { opacity: .55; cursor: not-allowed; transform: none; }
+
+        /* ══════════════════════════════
+           FULL-VIEWPORT VIEWER
+        ══════════════════════════════ */
+        .viewer {
+            position: fixed;
+            top: var(--topbar-h); left: 0; right: 0;
+            bottom: 0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+        }
+
+        /* ── Arrow buttons (flanking the book) ── */
+        .nav-btn {
+            flex-shrink: 0;
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,.18);
+            background: rgba(255,255,255,.07);
+            backdrop-filter: blur(8px);
+            color: #fff; font-size: 1.25rem;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all .25s ease;
+            margin: 0 .6rem;
+            flex-shrink: 0;
+        }
+        .nav-btn:hover:not(:disabled) {
+            background: var(--orange);
+            border-color: var(--orange);
+            transform: scale(1.12);
+            box-shadow: 0 0 20px rgba(255,75,1,.55);
+        }
+        .nav-btn:disabled { opacity: .18; cursor: not-allowed; }
+
+        /* ── Book stage ── */
+        .book-outer {
+            position: relative;
+            /* Fill whatever vertical space is left */
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Allow it to shrink to image width */
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        /* Spine */
+        .book-outer::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 8px; bottom: 8px;
+            width: 14px;
+            background: linear-gradient(to right, #180035, #3d0a80, #180035);
+            border-radius: 4px 0 0 4px;
+            z-index: 2;
+            box-shadow: inset -2px 0 5px rgba(0,0,0,.5);
+        }
+
+        .page-stage {
+            position: relative;
+            /* Fit image inside remaining viewport without overflow */
+            max-height: calc(100vh - var(--topbar-h) - 1.5rem);
+            display: flex; align-items: center;
+            border-radius: 3px 14px 14px 3px;
+            overflow: hidden;
+            box-shadow:
+                -5px 0 16px rgba(0,0,0,.6),
+                0 10px 40px rgba(0,0,0,.55),
+                0 0 0 1px rgba(255,255,255,.06);
+        }
+
+        .page-img {
+            display: block;
+            /* Scale to available height; width auto */
+            max-height: calc(100vh - var(--topbar-h) - 1.5rem);
+            max-width: calc(100vw - 160px); /* leave room for arrows */
+            width: auto; height: auto;
+            object-fit: contain;
+            background: #fff;
+        }
+
+        /* Page-turn animation */
+        .page-stage.turn-out { animation: tOut .22s ease-in  forwards; }
+        .page-stage.turn-in  { animation: tIn  .26s ease-out forwards; }
+        @keyframes tOut {
+            from { transform: rotateY(0deg);   opacity: 1; }
+            to   { transform: rotateY(-20deg); opacity: 0; }
+        }
+        @keyframes tIn {
+            from { transform: rotateY(20deg);  opacity: 0; }
+            to   { transform: rotateY(0deg);   opacity: 1; }
+        }
+
+        /* ── Dot indicators (bottom-center, overlaid on bg) ── */
+        .dots-wrap {
+            position: fixed;
+            bottom: .9rem; left: 50%;
+            transform: translateX(-50%);
+            z-index: 200;
+            display: flex; gap: 7px;
+        }
+        .dot {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: rgba(255,255,255,.22);
+            cursor: pointer; border: none; padding: 0;
+            transition: all .3s ease;
+        }
+        .dot.active {
+            background: var(--yellow); width: 20px; border-radius: 3px;
+            box-shadow: 0 0 7px rgba(254,202,11,.6);
+        }
+
+        /* ══════════════════════════════
+           PDF overlay
+        ══════════════════════════════ */
+        .pdf-overlay {
+            display: none; position: fixed; inset: 0; z-index: 500;
+            background: rgba(8,0,22,.9); backdrop-filter: blur(10px);
+            flex-direction: column; align-items: center; justify-content: center; gap: 1.4rem;
+        }
+        .pdf-overlay.show { display: flex; }
+        .spinner {
+            width: 52px; height: 52px; border-radius: 50%;
+            border: 4px solid rgba(255,255,255,.12);
+            border-top-color: var(--orange);
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .pdf-lbl { font-family: var(--font-h); color: #fff; font-size: 1.1rem; }
+        .pbar { width: 240px; height: 5px; border-radius: 3px; background: rgba(255,255,255,.1); overflow: hidden; }
+        .pfill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--orange), var(--yellow)); transition: width .3s; }
+
+        /* ── Responsive ── */
+        @media (max-width: 520px) {
+            .logo-link span { display: none; }
+            .nav-btn { width: 40px; height: 40px; margin: 0 .3rem; }
+            .page-img { max-width: calc(100vw - 110px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-stars" id="bgEl"></div>
+
+    <!-- ── TOP BAR ── -->
+    <header class="topbar">
+        <a href="../index.html" class="logo-link">
+            <img src="../assets/images/school-logo.png" alt="School Logo">
+            <span>Happy English Medium School</span>
+        </a>
+
+        <div class="topbar-right">
+            <div class="page-counter">
+                Page <strong id="numCur">1</strong> / <strong id="numTotal">8</strong>
+            </div>
+            <button class="btn-pdf" id="pdfBtn" onclick="downloadPDF()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none"
+                     stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                Download PDF
+            </button>
+        </div>
+    </header>
+
+    <!-- ── FULL-SCREEN VIEWER ── -->
+    <div class="viewer">
+
+        <!-- LEFT ARROW -->
+        <button class="nav-btn" id="prevBtn" onclick="changePage(-1)" disabled aria-label="Previous page">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"/>
+            </svg>
+        </button>
+
+        <!-- BOOK -->
+        <div class="book-outer">
+            <div class="page-stage" id="pageStage">
+                <img src="../assets/images/brochure_page_1.jpg"
+                     alt="Brochure Page 1"
+                     class="page-img" id="pageImg">
+            </div>
+        </div>
+
+        <!-- RIGHT ARROW -->
+        <button class="nav-btn" id="nextBtn" onclick="changePage(1)" aria-label="Next page">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                 stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"/>
+            </svg>
+        </button>
+
+    </div>
+
+    <!-- ── DOT INDICATORS ── -->
+    <div class="dots-wrap" id="dotsEl"></div>
+
+    <!-- ── PDF PROGRESS OVERLAY ── -->
+    <div class="pdf-overlay" id="pdfOverlay">
+        <div class="spinner"></div>
+        <div class="pdf-lbl" id="pdfLbl">Preparing brochure…</div>
+        <div class="pbar"><div class="pfill" id="pfill" style="width:0%"></div></div>
+    </div>
+
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script>
+    const pages = [
+        '../assets/images/brochure_page_1.jpg',
+        '../assets/images/brochure_page_2.jpg',
+        '../assets/images/brochure_page_3.jpg',
+        '../assets/images/brochure_page_4.jpg',
+        '../assets/images/brochure_page_5.jpg',
+        '../assets/images/brochure_page_6.jpg',
+        '../assets/images/brochure_page_7.jpg',
+        '../assets/images/brochure_page_8.jpg',
+    ];
+
+    let cur = 0;
+    const pageImg   = document.getElementById('pageImg');
+    const pageStage = document.getElementById('pageStage');
+    const prevBtn   = document.getElementById('prevBtn');
+    const nextBtn   = document.getElementById('nextBtn');
+    const numCur    = document.getElementById('numCur');
+    const numTotal  = document.getElementById('numTotal');
+    const dotsEl    = document.getElementById('dotsEl');
+
+    numTotal.textContent = pages.length;
+
+    // Build dots
+    pages.forEach((_, i) => {
+        const d = document.createElement('button');
+        d.className = 'dot' + (i === 0 ? ' active' : '');
+        d.setAttribute('aria-label', `Page ${i+1}`);
+        d.addEventListener('click', () => goTo(i));
+        dotsEl.appendChild(d);
+    });
+
+    function syncUI() {
+        numCur.textContent = cur + 1;
+        prevBtn.disabled   = cur === 0;
+        nextBtn.disabled   = cur === pages.length - 1;
+        document.querySelectorAll('.dot').forEach((d,i) =>
+            d.classList.toggle('active', i === cur));
+    }
+
+    function goTo(idx) {
+        if (idx === cur || idx < 0 || idx >= pages.length) return;
+        cur = idx;
+        flip();
+    }
+    function changePage(d) { goTo(cur + d); }
+
+    function flip() {
+        pageStage.classList.add('turn-out');
+        setTimeout(() => {
+            pageImg.src = pages[cur];
+            pageImg.alt = `Brochure Page ${cur + 1}`;
+            syncUI();
+            pageStage.classList.remove('turn-out');
+            pageStage.classList.add('turn-in');
+            setTimeout(() => pageStage.classList.remove('turn-in'), 280);
+        }, 200);
+    }
+
+    // Keyboard
+    document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight') changePage(1);
+        if (e.key === 'ArrowLeft')  changePage(-1);
+    });
+
+    // Swipe
+    let tx = 0;
+    pageStage.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+    pageStage.addEventListener('touchend',   e => {
+        const d = tx - e.changedTouches[0].clientX;
+        if (Math.abs(d) > 45) changePage(d > 0 ? 1 : -1);
+    });
+
+    // Stars
+    const bgEl = document.getElementById('bgEl');
+    for (let i = 0; i < 85; i++) {
+        const s = document.createElement('div');
+        s.className = 'star';
+        const sz = Math.random() * 2.2 + .7;
+        s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${2+Math.random()*3}s;--dl:${Math.random()*4}s`;
+        bgEl.appendChild(s);
+    }
+
+    // ── PDF Download ─────────────────────────────────────────────
+    async function downloadPDF() {
+        const btn     = document.getElementById('pdfBtn');
+        const overlay = document.getElementById('pdfOverlay');
+        const lbl     = document.getElementById('pdfLbl');
+        const fill    = document.getElementById('pfill');
+
+        btn.disabled = true;
+        overlay.classList.add('show');
+
+        try {
+            const { jsPDF } = window.jspdf;
+
+            const loadImg = src => new Promise((res, rej) => {
+                const img = new Image();
+                img.crossOrigin = 'anonymous';
+                img.onload  = () => res(img);
+                img.onerror = () => rej(new Error('Could not load: ' + src));
+                img.src = src + '?t=' + Date.now(); // cache-bust
+            });
+
+            const imgs = [];
+            for (let i = 0; i < pages.length; i++) {
+                lbl.textContent  = `Loading page ${i+1} of ${pages.length}…`;
+                fill.style.width = `${(i / pages.length) * 55}%`;
+                imgs.push(await loadImg(pages[i]));
+            }
+
+            // Use first image's aspect ratio for page size
+            const nat  = imgs[0];
+            const pw   = 210; // A4 width in mm
+            const ph   = Math.round(pw * nat.naturalHeight / nat.naturalWidth);
+            const orient = ph >= pw ? 'portrait' : 'landscape';
+
+            const pdf = new jsPDF({ orientation: orient, unit: 'mm', format: [pw, ph] });
+
+            for (let i = 0; i < imgs.length; i++) {
+                lbl.textContent  = `Adding page ${i+1} of ${imgs.length}…`;
+                fill.style.width = `${55 + ((i+1) / imgs.length) * 43}%`;
+
+                if (i > 0) {
+                    const iw = Math.round(pw * imgs[i].naturalWidth / imgs[i].naturalWidth);
+                    const ih = Math.round(pw * imgs[i].naturalHeight / imgs[i].naturalWidth);
+                    pdf.addPage([pw, ih]);
+                }
+
+                const c = document.createElement('canvas');
+                c.width  = imgs[i].naturalWidth;
+                c.height = imgs[i].naturalHeight;
+                c.getContext('2d').drawImage(imgs[i], 0, 0);
+
+                const cw = pw;
+                const ch = Math.round(pw * imgs[i].naturalHeight / imgs[i].naturalWidth);
+                pdf.addImage(c.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, cw, ch, '', 'FAST');
+            }
+
+            lbl.textContent  = 'Saving…';
+            fill.style.width = '100%';
+            await new Promise(r => setTimeout(r, 300));
+            pdf.save('HappyEnglishMediumSchool_Brochure.pdf');
+
+        } catch (err) {
+            alert('PDF generation failed: ' + err.message);
+            console.error(err);
+        } finally {
+            overlay.classList.remove('show');
+            btn.disabled = false;
+        }
+    }
+    </script>
+</body>
+</html>
