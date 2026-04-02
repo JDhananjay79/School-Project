@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const lastName = lastNameInput.value;
             const mobile = mobileInput.value;
             const email = document.querySelector('input[type="email"]').value;
-            return grade && firstName && lastName && mobile && email;
+            return grade && firstName && lastName && mobile;
         }
 
         // Handle "Download Brochure" Click
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const email = document.querySelector('input[type="email"]').value;
 
                 // Basic Validation
-                if (!grade || !firstName || !lastName || !mobile || !email) {
+                if (!grade || !firstName || !lastName || !mobile) {
                     alert('Please fill in all required fields.');
                     return;
                 }
