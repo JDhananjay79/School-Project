@@ -3,13 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="School Brochure - Happy English Medium School">
-    <title>School Brochure | Happy English Medium School</title>
+    <title>School Brochure & Curriculum | Happy English Medium School, Dighi Pune</title>
+    <meta name="description"
+        content="View and download the official school brochure of Happy English Medium School, Dighi, Pune. Explore our early childhood curriculum, teaching philosophy, and campus features.">
+    <meta name="keywords"
+        content="Happy English Medium School brochure, school prospectus Dighi Pune, curriculum details, kindergarten admission dighi, preschool syllabus pune">
+    <meta name="author" content="Happy English Medium School">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://school-project-six-chi.vercel.app/pages/brochure.html">
+
+    <!-- Local SEO Geo-Tags -->
+    <meta name="geo.region" content="IN-MH">
+    <meta name="geo.placename" content="Dighi, Pune, Maharashtra">
+    <meta name="geo.position" content="18.6083;73.8742">
+    <meta name="ICBM" content="18.6083, 73.8742">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/jpeg" href="../assets/images/logo.jpg">
+    <link rel="apple-touch-icon" href="../assets/images/logo.jpg">
+    <meta name="theme-color" content="#0c0118">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Happy English Medium School">
+    <meta property="og:url" content="https://school-project-six-chi.vercel.app/pages/brochure.html">
+    <meta property="og:title" content="School Brochure & Curriculum | Happy English Medium School, Dighi Pune">
+    <meta property="og:description"
+        content="View the official school brochure of Happy English Medium School, Dighi, Pune. Discover our curriculum, vision, and campus facilities.">
+    <meta property="og:image" content="https://school-project-six-chi.vercel.app/assets/images/brochure_page_1.jpg">
+    <meta property="og:locale" content="en_IN">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="School Brochure & Curriculum | Happy English Medium School, Dighi Pune">
+    <meta name="twitter:description"
+        content="View the official school brochure of Happy English Medium School, Dighi, Pune.">
+    <meta name="twitter:image" content="https://school-project-six-chi.vercel.app/assets/images/brochure_page_1.jpg">
+
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Schema.org BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://school-project-six-chi.vercel.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Brochure",
+          "item": "https://school-project-six-chi.vercel.app/pages/brochure.html"
+        }
+      ]
+    }
+    </script>
 
     <style>
         :root {
@@ -67,8 +123,8 @@
             text-decoration: none; flex-shrink: 0;
         }
         .logo-link img {
-            width: 36px; height: 36px; border-radius: 50%;
-            object-fit: cover; border: 2px solid var(--orange);
+            height: 38px; width: auto; max-width: 55px; border-radius: 8px;
+            object-fit: contain; background: #fff; padding: 2px; border: 1.5px solid var(--orange);
         }
         .logo-link span {
             font-family: var(--font-h); color: #fff;
@@ -243,6 +299,144 @@
             .nav-btn { width: 40px; height: 40px; margin: 0 .3rem; }
             .page-img { max-width: calc(100vw - 110px); }
         }
+
+        /* ── Floating Contact Widget ── */
+        .floating-contact-widget {
+            position: fixed;
+            bottom: 24px;
+            right: 20px;
+            z-index: 400;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-end;
+        }
+        .float-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 50px;
+            color: #ffffff !important;
+            text-decoration: none;
+            font-family: var(--font-h);
+            font-size: 0.92rem;
+            font-weight: 600;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.4);
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+        }
+        .float-btn svg { flex-shrink: 0; }
+        .float-btn:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        }
+        .float-btn.whatsapp {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        }
+        .float-btn.call {
+            background: linear-gradient(135deg, var(--purple) 0%, #4a0870 100%);
+        }
+        @media (max-width: 640px) {
+            .float-btn span { display: none; }
+            .float-btn { width: 44px; height: 44px; padding: 0; justify-content: center; border-radius: 50%; }
+            .floating-contact-widget { bottom: 18px; right: 14px; gap: 8px; }
+        }
+
+        /* ── Finish CTA Card ── */
+        .brochure-finish-cta {
+            position: fixed;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(25px);
+            z-index: 250;
+            background: rgba(14, 2, 32, 0.96);
+            backdrop-filter: blur(16px);
+            border: 1.5px solid rgba(254, 202, 11, 0.5);
+            border-radius: 20px;
+            padding: 1.1rem 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.65);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            max-width: 90vw;
+        }
+        .brochure-finish-cta.show {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateX(-50%) translateY(0);
+        }
+        .finish-cta-text h4 {
+            color: #ffffff;
+            font-family: var(--font-h);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+        .finish-cta-text p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.88rem;
+        }
+        .finish-cta-actions {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .finish-cta-btn {
+            padding: 0.55rem 1.15rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: var(--font-h);
+            font-size: 0.88rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+        }
+        .finish-cta-btn.primary {
+            background: linear-gradient(135deg, var(--orange) 0%, #ff6b3d 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(255, 75, 1, 0.4);
+        }
+        .finish-cta-btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 75, 1, 0.6);
+        }
+        .finish-cta-btn.whatsapp {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+        }
+        .finish-cta-btn.whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+        }
+        .finish-cta-btn.call {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+        .finish-cta-btn.call:hover {
+            background: rgba(255, 255, 255, 0.22);
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .brochure-finish-cta {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                bottom: 4.5rem;
+                padding: 1rem 1.2rem;
+                gap: 0.8rem;
+            }
+            .finish-cta-actions {
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -302,6 +496,43 @@
 
     </div>
 
+    <!-- ── END-OF-BROCHURE CTA CARD (Appears on Page 8) ── -->
+    <div class="brochure-finish-cta" id="finishCta">
+        <div class="finish-cta-text">
+            <h4>Admissions Open for 2027-28</h4>
+            <p>Ready to join the Happy School family? Connect with us today.</p>
+        </div>
+        <div class="finish-cta-actions">
+            <a href="../index.html#admissionForm" class="finish-cta-btn primary">
+                <span>Enquire Online</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </a>
+            <a href="https://wa.me/919822531127?text=Hello%20Happy%20English%20Medium%20School%2C%20I%20reviewed%20the%20brochure%20and%20would%20like%20to%20enquire%20about%20admissions." class="finish-cta-btn whatsapp" target="_blank" rel="noopener noreferrer">
+                <span>WhatsApp</span>
+            </a>
+            <a href="tel:+919822531127" class="finish-cta-btn call">
+                <span>Call Us</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- ── FLOATING WHATSAPP & CALL WIDGET ── -->
+    <div class="floating-contact-widget" role="region" aria-label="Quick School Contact">
+        <a href="https://wa.me/919822531127?text=Hello%20Happy%20English%20Medium%20School%2C%20I%20would%20like%20to%20enquire%20about%20admissions."
+           class="float-btn whatsapp" target="_blank" rel="noopener noreferrer" title="Chat on WhatsApp">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+            <span>WhatsApp Us</span>
+        </a>
+        <a href="tel:+919822531127" class="float-btn call" title="Call School Admissions">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 0 0-1.02.24l-2.2 2.2a15.045 15.045 0 0 1-6.59-6.59l2.2-2.21a.96.96 0 0 0 .25-1.02A11.36 11.36 0 0 1 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/>
+            </svg>
+            <span>Call School</span>
+        </a>
+    </div>
+
     <!-- ── DOT INDICATORS ── -->
     <div class="dots-wrap" id="dotsEl"></div>
 
@@ -335,6 +566,7 @@
     const numCur    = document.getElementById('numCur');
     const numTotal  = document.getElementById('numTotal');
     const dotsEl    = document.getElementById('dotsEl');
+    const finishCta = document.getElementById('finishCta');
 
     numTotal.textContent = pages.length;
 
@@ -353,7 +585,32 @@
         nextBtn.disabled   = cur === pages.length - 1;
         document.querySelectorAll('.dot').forEach((d,i) =>
             d.classList.toggle('active', i === cur));
+
+        if (finishCta) {
+            if (cur === pages.length - 1) {
+                finishCta.classList.add('show');
+                if (dotsEl) dotsEl.style.opacity = '0.2';
+            } else {
+                finishCta.classList.remove('show');
+                if (dotsEl) dotsEl.style.opacity = '1';
+            }
+        }
     }
+
+    // Dynamic Admission Year sync for Brochure
+    fetch('/api/site-config')
+        .then(r => r.json())
+        .then(data => {
+            if (data && data.config) {
+                const h4 = document.querySelector('#finishCta .finish-cta-text h4');
+                if (h4) {
+                    const isOpen = data.config.is_admission_open !== false;
+                    const year = data.config.admission_year || '2027-28';
+                    h4.textContent = isOpen ? `Admissions Open for ${year}` : `Admissions for ${year} Closed`;
+                }
+            }
+        })
+        .catch(() => {});
 
     function goTo(idx) {
         if (idx === cur || idx < 0 || idx >= pages.length) return;

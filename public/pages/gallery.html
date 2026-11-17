@@ -4,347 +4,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moments of Joy Photo Gallery | Happy English Medium School, Dighi Pune</title>
     <meta name="description"
-        content="Gallery - Happy English Medium School. Take a look at our vibrant school life, cultural festivals, sports meets, and daily activities.">
-    <title>Gallery | Happy English Medium School</title>
+        content="Explore photos of celebrations, sports meets, cultural festivals, and daily fun at Happy English Medium School, Dighi, Pune. See our young learners shine!">
+    <meta name="keywords"
+        content="Happy English Medium School gallery, school photos Dighi Pune, cultural fest happy school, sports day Dighi Pune, kindergarten activities pune">
+    <meta name="author" content="Happy English Medium School">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://school-project-six-chi.vercel.app/pages/gallery.html">
+
+    <!-- Local SEO Geo-Tags -->
+    <meta name="geo.region" content="IN-MH">
+    <meta name="geo.placename" content="Dighi, Pune, Maharashtra">
+    <meta name="geo.position" content="18.6083;73.8742">
+    <meta name="ICBM" content="18.6083, 73.8742">
+
+    <!-- Favicon & Brand Icons -->
+    <link rel="icon" type="image/jpeg" href="../assets/images/logo.jpg">
+    <link rel="apple-touch-icon" href="../assets/images/logo.jpg">
+    <meta name="theme-color" content="#6B109C">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Happy English Medium School">
+    <meta property="og:url" content="https://school-project-six-chi.vercel.app/pages/gallery.html">
+    <meta property="og:title" content="Moments of Joy Photo Gallery | Happy English Medium School, Dighi Pune">
+    <meta property="og:description"
+        content="Explore photo highlights of cultural festivals, sports days, student celebrations, and vibrant activities at Happy English Medium School, Dighi, Pune.">
+    <meta property="og:image" content="https://school-project-six-chi.vercel.app/assets/images/nurturing_minds.jpg">
+    <meta property="og:locale" content="en_IN">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Moments of Joy Photo Gallery | Happy English Medium School, Dighi Pune">
+    <meta name="twitter:description"
+        content="Explore photo highlights from Happy English Medium School, Dighi, Pune.">
+    <meta name="twitter:image" content="https://school-project-six-chi.vercel.app/assets/images/nurturing_minds.jpg">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" type="image/jpeg" href="../assets/images/logo.jpg">
     <link
         href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="../css/style.css">
+
+    <!-- Schema.org BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://school-project-six-chi.vercel.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Gallery",
+          "item": "https://school-project-six-chi.vercel.app/pages/gallery.html"
+        }
+      ]
+    }
+    </script>
     <style>
-        /* Gallery Specific Styles */
         .gallery-hero {
-            padding: 5rem 0 3rem;
-            /* Reduced height */
-            /* Reverted to original */
-            background-color: var(--primary-purple);
+            padding: 6.5rem 0 3.5rem;
+            background: linear-gradient(135deg, var(--primary-purple) 0%, #4a0870 100%);
             color: white;
             text-align: center;
         }
 
         .gallery-hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
+            font-size: 3.2rem;
+            margin-bottom: 0.8rem;
             color: white;
+            font-family: var(--font-heading);
         }
 
         .gallery-hero p {
-            font-size: 1.2rem;
-            color: white;
-            max-width: 600px;
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 650px;
             margin: 0 auto;
         }
 
         .gallery-section {
-            padding: 3.5rem 0;
-        }
-
-        .gallery-section:nth-child(even) {
+            padding: 2.5rem 0 5rem;
             background-color: var(--bg-light);
-        }
-
-        .gallery-title-wrapper {
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-
-        .gallery-title-wrapper h2 {
-            font-size: 2.5rem;
-            position: relative;
-            display: inline-block;
-            margin-bottom: 1rem;
-        }
-
-        /* Removing underlines and updating hover effects */
-        .gallery-title-wrapper h2 {
-            font-size: 2.5rem;
-            position: relative;
-            display: inline-block;
-            margin-bottom: 1rem;
-            background-clip: text;
-            -webkit-background-clip: text;
-            transition: transform 0.4s ease, text-shadow 0.4s ease;
-            cursor: default;
-        }
-
-        .gallery-title-wrapper h2:hover {
-            transform: scale(1.1);
-            filter: brightness(1.3);
-            text-shadow: 0 4px 15px rgba(255, 255, 255, 0.6);
-        }
-
-
-
-        /* Carousel Styles */
-        .carousel-wrapper {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .carousel-main {
-            display: flex;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-            aspect-ratio: 16 / 9;
-            position: relative;
-        }
-
-        .carousel-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .carousel-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 2rem;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.4s ease;
-        }
-
-        .carousel-caption h3 {
-            color: var(--primary-yellow);
-            margin-bottom: 0.5rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .carousel-caption p {
-            color: white;
-            font-weight: 500;
-        }
-
-        .carousel-slide.active .carousel-caption {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .carousel-nav {
-            display: none !important;
-            /* Hidden as requested */
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
-            color: var(--text-dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            z-index: 10;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .carousel-nav:hover {
-            background: white;
-            color: var(--primary-purple);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .carousel-nav.prev {
-            left: 20px;
-        }
-
-        .carousel-nav.next {
-            right: 20px;
-        }
-
-        .carousel-indicators {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            z-index: 10;
-        }
-
-        .indicator {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .indicator.active {
-            background: white;
-            width: 30px;
-            border-radius: 10px;
-        }
-
-        @media (max-width: 768px) {
-            .gallery-hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .carousel-wrapper {
-                border-radius: 15px;
-            }
-
-            .carousel-slide {
-                aspect-ratio: 4 / 5;
-                /* More vertical for mobile */
-            }
-
-            .carousel-nav {
-                display: none !important;
-            }
-        }
-
-        /* Updated Storybook Loader */
-        .loader-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--bg-main);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.8s ease-out, visibility 0.8s;
-        }
-
-        .loader-container.fade-out {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .book {
-            position: relative;
-            width: 120px;
-            height: 80px;
-            perspective: 1000px;
-            margin-bottom: 2rem;
-        }
-
-        .page {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 60px;
-            height: 80px;
-            background: #fff;
-            border: 1px solid #e0e0e0;
-            border-left: 2px solid var(--primary-purple);
-            transform-origin: left center;
-            transform-style: preserve-3d;
-            border-radius: 0 5px 5px 0;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
-        }
-
-        .book .page:nth-child(1) {
-            animation: pageTurn 2.5s infinite ease-in-out;
-            animation-delay: 0.0s;
-            background: var(--primary-yellow);
-        }
-
-        .book .page:nth-child(2) {
-            animation: pageTurn 2.5s infinite ease-in-out;
-            animation-delay: 0.3s;
-            background: var(--primary-orange);
-        }
-
-        .book .page:nth-child(3) {
-            animation: pageTurn 2.5s infinite ease-in-out;
-            animation-delay: 0.6s;
-            background: var(--primary-purple);
-        }
-
-        .book .page:nth-child(4) {
-            animation: pageTurn 2.5s infinite ease-in-out;
-            animation-delay: 0.9s;
-            background: var(--primary-red);
-        }
-
-        .book .page:nth-child(5) {
-            animation: pageTurn 2.5s infinite ease-in-out;
-            animation-delay: 1.2s;
-            background: var(--accent-blue);
-        }
-
-        .book .page:nth-child(6) {
-            left: 0;
-            transform: rotateY(0deg);
-            width: 60px;
-            border-radius: 5px 0 0 5px;
-            border-right: 2px solid var(--primary-purple);
-            border-left: none;
-            z-index: -1;
-            background: #fff;
-        }
-
-        @keyframes pageTurn {
-            0% {
-                transform: rotateY(0deg);
-                z-index: 5;
-            }
-
-            20% {
-                transform: rotateY(-180deg);
-                z-index: 10;
-            }
-
-            100% {
-                transform: rotateY(-180deg);
-                z-index: 10;
-            }
-        }
-
-        .loader-text {
-            font-family: var(--font-heading);
-            font-size: 1.5rem;
-            color: var(--primary-purple);
-            animation: pulse 1.5s infinite ease-in-out;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 0.7;
-                transform: scale(0.98);
-            }
-
-            50% {
-                opacity: 1;
-                transform: scale(1);
-            }
         }
     </style>
 </head>
 
 <body>
-
-
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
@@ -360,8 +119,9 @@
             <ul class="nav-links">
                 <li><a href="../index.html#home">Home</a></li>
                 <li><a href="../index.html#about">About Us</a></li>
-                <li><a href="../index.html#events">Programs</a></li>
+                <li><a href="../index.html#events">Activities & Events</a></li>
                 <li><a href="gallery.html" class="active">Gallery</a></li>
+                <li><a href="brochure.html">Brochure</a></li>
                 <li><a href="../index.html#contact" class="btn-purple">Contact Us</a></li>
             </ul>
         </div>
@@ -370,64 +130,174 @@
     <!-- Header -->
     <header class="gallery-hero">
         <div class="container">
-            <h1>Moments of Joy</h1>
-            <p>Capturing the vibrant energy and creative spirit of our wonderful students.</p>
+            <h1 class="gallery-heading-wrap">
+                <span>Moments of Joy</span>
+                <span id="secretAdminTrigger" class="secret-trigger-space" title="" aria-hidden="true"></span>
+            </h1>
+            <p>Capturing the vibrant energy, creative spirit, and memorable milestones of our wonderful students.</p>
         </div>
     </header>
 
-    <!-- Moments That Matter - Grid View -->
+    <!-- Interactive Filterable Gallery -->
     <section class="gallery-section">
         <div class="container">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; justify-content: center; padding: 3rem 0;">
+            <!-- Filter Pills -->
+            <div class="gallery-filter-tabs" role="tablist" aria-label="Filter photos by category">
+                <button class="filter-pill active" data-category="all">✨ All Photos (24)</button>
+                <button class="filter-pill" data-category="cultural">🎭 Cultural Fest (11)</button>
+                <button class="filter-pill" data-category="sports">🏆 Sports Meet (3)</button>
+                <button class="filter-pill" data-category="bubbles">🔬 Brainy Bubbles (2)</button>
+                <button class="filter-pill" data-category="traditions">🎨 Tiny Traditions (4)</button>
+                <button class="filter-pill" data-category="mini">🧩 Mini Activities (4)</button>
+            </div>
 
-                <!-- Event 1 -->
-                <a href="gallery-brainy-bubbles.html" class="event-card" style="position: relative;">
-                    <img src="../assets/images/brainy_bubbles_new.jpg" alt="Brainy Bubbles">
-                    <div class="event-info">
-                        <h3>Brainy Bubbles</h3>
-                        <span>Fun experiments and bubbling ideas.</span>
-                    </div>
-                </a>
+            <!-- Unified Photo Grid -->
+            <div class="gallery-grid" id="mainGalleryGrid">
+                
+                <!-- Cultural Fest (11 Photos) -->
+                <div class="gallery-card" data-category="cultural">
+                    <span class="gallery-card-badge">Cultural Fest</span>
+                    <img src="../assets/images/gallery/cultural_fest_1.jpg" alt="Traditional Dance Performance" loading="lazy" decoding="async">
+                    <div class="gallery-card-overlay"><span class="gallery-card-title">Traditional Dance Performance</span></div>
+                </div>
+                <div class="gallery-card" data-category="cultural">
+                    <span class="gallery-card-badge">Cultural Fest</span>
+                    <img src="../assets/images/gallery/cultural_fest_2.jpg" alt="Warrior Dance" loading="lazy" decoding="async">
+                    <div class="gallery-card-overlay"><span class="gallery-card-title">Warrior Dance Performance</span></div>
+                </div>
+                <div class="gallery-card" data-category="cultural">
+                    <span class="gallery-card-badge">Cultural Fest</span>
+                    <img src="../assets/images/gallery/cultural_fest_3.jpg" alt="Pink Fairy Dance" loading="lazy" decoding="async">
+                    <div class="gallery-card-overlay"><span class="gallery-card-title">Pink Fairy Dance</span></div>
+                </div>
+                <div class="gallery-card" data-category="cultural">
+                    <span class="gallery-card-badge">Cultural Fest</span>
+                    <img src="../assets/images/gallery/cultural_fest_4.jpg" alt="Orange & White Performance" loading="lazy" decoding="async">
+                    <div class="gallery-card-overlay"><span class="gallery-card-title">Orange & White Group Performance</span></div>
+                </div>
+                <div class="gallery-card" data-category="cultural">
+                    <span class="gallery-card-badge">Cultural Fest</span>
+                    <img src="../assets/images/gallery/cultural_fest_5.jpg" alt="Flag Parade" loading="lazy" decoding="async">
+                    <div class="gallery-card-overlay"><span class="gallery-card-title">Celebratory Flag Parade</span></div>
+                </div>
+                <div class="gallery-card" data-category="cultural">
+                    <span class="gallery-card-badge">Cultural Fest</span>
+                    <img src="../assets/images/gallery/cultural_fest_new_1.jpg" alt="Cultural Fest Performance 1" loading="lazy" decoding="async">
+                    <div class="gallery-card-overlay"><span class="gallery-card-title">Stage Presentation Act 1</span></div>
+                </div>
+                <div class="gallery-card" data-category="cultural">
+                    <span class="gallery-card-badge">Cultural Fest</span>
+                    <img src="../assets/images/gallery/cultural_fest_new_2.jpg" alt="Cultural Fest Performance 2" loading="lazy" decoding="async">
+                    <div class="gallery-card-overlay"><span class="gallery-card-title">Stage Presentation Act 2</span></div>
+                </div>
+                <div class="gallery-card" data-category="cultural">
+                    <span class="gallery-card-badge">Cultural Fest</span>
+                    <img src="../assets/images/gallery/cultural_fest_new_3.jpg" alt="Cultural Fest Performance 3" loading="lazy" decoding="async">
+                    <div class="gallery-card-overlay"><span class="gallery-card-title">Stage Presentation Act 3</span></div>
+                </div>
+                <div class="gallery-card" data-category="cultural">
+                    <span class="gallery-card-badge">Cultural Fest</span>
+                    <img src="../assets/images/gallery/cultural_fest_new_4.jpg" alt="Cultural Fest Performance 4" loading="lazy" decoding="async">
+                    <div class="gallery-card-overlay"><span class="gallery-card-title">Stage Presentation Act 4</span></div>
+                </div>
+                <div class="gallery-card" data-category="cultural">
+                    <span class="gallery-card-badge">Cultural Fest</span>
+                    <img src="../assets/images/gallery/cultural_fest_new_5.jpg" alt="Cultural Fest Performance 5" loading="lazy" decoding="async">
+                    <div class="gallery-card-overlay"><span class="gallery-card-title">Stage Presentation Act 5</span></div>
+                </div>
+                <div class="gallery-card" data-category="cultural">
+                    <span class="gallery-card-badge">Cultural Fest</span>
+                    <img src="../assets/images/gallery/cultural_fest_new_6.jpg" alt="Cultural Fest Performance 6" loading="lazy" decoding="async">
+                    <div class="gallery-card-overlay"><span class="gallery-card-title">Grand Finale Showcase</span></div>
+                </div>
 
-                <!-- Event 2: Annual Cultural Fest -->
-                <a href="gallery-cultural.html" class="event-card" style="position: relative;">
-                    <img src="../assets/images/gallery/cultural_fest_new_5.jpg" alt="Cultural Fest">
-                    <div class="event-info" style="z-index: 2;">
-                        <h3>Annual Cultural Fest</h3>
-                        <span>Celebrating talent and creativity on stage.</span>
-                    </div>
-                </a>
+                <!-- Sports Meet (3 Photos) -->
+                <div class="gallery-card" data-category="sports">
+                    <span class="gallery-card-badge">Sports Meet</span>
+                    <img src="../assets/images/sports_meet_1.jpg" alt="Annual Sports Meet 1" loading="lazy" decoding="async">
+                    <div class="gallery-card-overlay"><span class="gallery-card-title">Track & Field Race</span></div>
+                </div>
+                <div class="gallery-card" data-category="sports">
+                    <span class="gallery-card-badge">Sports Meet</span>
+                    <img src="../assets/images/sports_meet_2.jpg" alt="Annual Sports Meet 2" loading="lazy" decoding="async">
+                    <div class="gallery-card-overlay"><span class="gallery-card-title">Team Relay Excitement</span></div>
+                </div>
+                <div class="gallery-card" data-category="sports">
+                    <span class="gallery-card-badge">Sports Meet</span>
+                    <img src="../assets/images/sports_meet_3.jpg" alt="Annual Sports Meet 3" loading="lazy" decoding="async">
+                    <div class="gallery-card-overlay"><span class="gallery-card-title">Victory & Team Spirit</span></div>
+                </div>
 
-                <!-- Event 3 -->
-                <a href="gallery-sports.html" class="event-card" style="position: relative;">
-                    <img src="../assets/images/sports_meet_2.jpg" alt="Sports Meet">
-                    <div class="event-info">
-                        <h3>Annual Sports Meet</h3>
-                        <span>Fast, focused, and full of team spirit.</span>
-                    </div>
-                </a>
+                <!-- Brainy Bubbles (2 Photos) -->
+                <div class="gallery-card" data-category="bubbles">
+                    <span class="gallery-card-badge">Brainy Bubbles</span>
+                    <img src="../assets/images/brainy_bubbles.jpg" alt="Art and Creative Play" loading="lazy" decoding="async">
+                    <div class="gallery-card-overlay"><span class="gallery-card-title">Creative Bubble Experiments</span></div>
+                </div>
+                <div class="gallery-card" data-category="bubbles">
+                    <span class="gallery-card-badge">Brainy Bubbles</span>
+                    <img src="../assets/images/brainy_bubbles_new.jpg" alt="Hands-on Discovery" loading="lazy" decoding="async">
+                    <div class="gallery-card-overlay"><span class="gallery-card-title">Science Wonder Discovery</span></div>
+                </div>
 
-                <!-- Event 4 -->
-                <a href="gallery-activities.html" class="event-card" style="position: relative;">
-                    <img src="../assets/images/gallery/tiny_traditions_new_1.jpg" alt="Tiny Traditions Festival">
-                    <div class="event-info">
-                        <h3>Tiny Traditions Festival</h3>
-                        <span>Celebrating our culture and heritage.</span>
-                    </div>
-                </a>
+                <!-- Tiny Traditions (4 Photos) -->
+                <div class="gallery-card" data-category="traditions">
+                    <span class="gallery-card-badge">Tiny Traditions</span>
+                    <img src="../assets/images/tiny_traditions.jpg" alt="Cultural Day Gathering" loading="lazy" decoding="async">
+                    <div class="gallery-card-overlay"><span class="gallery-card-title">Heritage Attire Day</span></div>
+                </div>
+                <div class="gallery-card" data-category="traditions">
+                    <span class="gallery-card-badge">Tiny Traditions</span>
+                    <img src="../assets/images/gallery/tiny_traditions_new_1.jpg" alt="Traditions Festival Joy" loading="lazy" decoding="async">
+                    <div class="gallery-card-overlay"><span class="gallery-card-title">Festive Celebration Circle</span></div>
+                </div>
+                <div class="gallery-card" data-category="traditions">
+                    <span class="gallery-card-badge">Tiny Traditions</span>
+                    <img src="../assets/images/gallery/traditions_1.jpg" alt="Traditions Activity 1" loading="lazy" decoding="async">
+                    <div class="gallery-card-overlay"><span class="gallery-card-title">Cultural Art & Decor</span></div>
+                </div>
+                <div class="gallery-card" data-category="traditions">
+                    <span class="gallery-card-badge">Tiny Traditions</span>
+                    <img src="../assets/images/gallery/traditions_2.jpg" alt="Traditions Activity 2" loading="lazy" decoding="async">
+                    <div class="gallery-card-overlay"><span class="gallery-card-title">Traditional Song & Rhythm</span></div>
+                </div>
 
-                <!-- Event 5 -->
-                <a href="gallery-mini-activities.html" class="event-card" style="position: relative;">
-                    <img src="../assets/images/mini_activities.jpg" alt="Mini Activities Masters">
-                    <div class="event-info">
-                        <h3>Mini Activities Masters</h3>
-                        <span>Engaging little hands in big adventures.</span>
-                    </div>
-                </a>
+                <!-- Mini Activities (4 Photos) -->
+                <div class="gallery-card" data-category="mini">
+                    <span class="gallery-card-badge">Mini Activities</span>
+                    <img src="../assets/images/mini_activities.jpg" alt="Group Learning" loading="lazy" decoding="async">
+                    <div class="gallery-card-overlay"><span class="gallery-card-title">Play-Based Exploration</span></div>
+                </div>
+                <div class="gallery-card" data-category="mini">
+                    <span class="gallery-card-badge">Mini Activities</span>
+                    <img src="../assets/images/mini_activities_1.jpg" alt="Outdoor Play Activities" loading="lazy" decoding="async">
+                    <div class="gallery-card-overlay"><span class="gallery-card-title">Active Play in Sunshine</span></div>
+                </div>
+                <div class="gallery-card" data-category="mini">
+                    <span class="gallery-card-badge">Mini Activities</span>
+                    <img src="../assets/images/mini_activities_2.jpg" alt="Fine Motor Building" loading="lazy" decoding="async">
+                    <div class="gallery-card-overlay"><span class="gallery-card-title">Building Blocks & Logic</span></div>
+                </div>
+                <div class="gallery-card" data-category="mini">
+                    <span class="gallery-card-badge">Mini Activities</span>
+                    <img src="../assets/images/mini_activities_3.jpg" alt="Classroom Discovery" loading="lazy" decoding="async">
+                    <div class="gallery-card-overlay"><span class="gallery-card-title">Interactive Story Time</span></div>
+                </div>
 
             </div>
         </div>
     </section>
+
+    <!-- Lightbox Zoom Modal -->
+    <div id="galleryLightbox" class="lightbox-overlay" aria-hidden="true" role="dialog">
+        <button class="lightbox-btn close" id="lightboxClose" aria-label="Close image">&times;</button>
+        <button class="lightbox-btn prev" id="lightboxPrev" aria-label="Previous image">&#10094;</button>
+        <div class="lightbox-container">
+            <img id="lightboxImg" src="" alt="Full view" class="lightbox-img">
+            <div id="lightboxCaption" class="lightbox-caption"></div>
+        </div>
+        <button class="lightbox-btn next" id="lightboxNext" aria-label="Next image">&#10095;</button>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -435,32 +305,33 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <img src="../assets/images/school-logo.png" alt="Logo">
+                        <img src="../assets/images/school-logo.png" alt="Happy English Medium School Logo" loading="lazy" decoding="async">
                         <h3>Happy English Medium School</h3>
                     </div>
-                    <p>Fostering a love for learning in a happy environment.</p>
+                    <p>Fostering a love for learning in a happy, secure, and nurturing environment.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="../index.html#home">Home</a></li>
-                        <li><a href="../index.html#about">About</a></li>
+                        <li><a href="../index.html#about">About Us</a></li>
                         <li><a href="../index.html#home">Admissions</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="brochure.html">Brochure</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Contact Us</h4>
                     <ul class="contact-list">
                         <li>
-                            <a href="https://maps.app.goo.gl/ZKkhJWpBFfxy5tMj6" target="_blank"
+                            <a href="https://maps.app.goo.gl/ZKkhJWpBFfxy5tMj6" target="_blank" rel="noopener noreferrer"
                                 style="display: flex; align-items: center; gap: 10px; color: inherit;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                     fill="var(--primary-yellow)">
                                     <path
                                         d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z" />
                                 </svg>
-                                <span>Sahyadri Colony-3, Adarsh Nagar, Dighi, Pune - 411015</span>
+                                <span>Sahyadri Colony, Adarsh Nagar, Dighi, Pune - 411015</span>
                             </a>
                         </li>
                         <li>
@@ -505,32 +376,189 @@
         </div>
     </footer>
 
-    <!-- Frozen Notification Bar -->
-    <div class="notification-bar">
+    <!-- Frozen Notification Bar (Clickable -> Scrolls to Form) -->
+    <div class="notification-bar" title="Click to enquire for admission">
         <div class="notification-content">
-            <span class="notification-text">ADMISSIONS OPEN FOR 2027-28</span>
-            <span class="notification-text">ADMISSIONS OPEN FOR 2027-28</span>
-            <span class="notification-text">ADMISSIONS OPEN FOR 2027-28</span>
-            <span class="notification-text">ADMISSIONS OPEN FOR 2027-28</span>
-            <span class="notification-text">ADMISSIONS OPEN FOR 2027-28</span>
-            <span class="notification-text">ADMISSIONS OPEN FOR 2027-28</span>
-            <span class="notification-text">ADMISSIONS OPEN FOR 2027-28</span>
-            <span class="notification-text">ADMISSIONS OPEN FOR 2027-28</span>
+            <span class="notification-text">ADMISSIONS OPEN FOR 2027-28 — TAP TO ENQUIRE 👆</span>
+            <span class="notification-text">ADMISSIONS OPEN FOR 2027-28 — TAP TO ENQUIRE 👆</span>
+            <span class="notification-text">ADMISSIONS OPEN FOR 2027-28 — TAP TO ENQUIRE 👆</span>
+            <span class="notification-text">ADMISSIONS OPEN FOR 2027-28 — TAP TO ENQUIRE 👆</span>
+            <span class="notification-text">ADMISSIONS OPEN FOR 2027-28 — TAP TO ENQUIRE 👆</span>
+            <span class="notification-text">ADMISSIONS OPEN FOR 2027-28 — TAP TO ENQUIRE 👆</span>
         </div>
     </div>
 
-    <script src="js/script.js"></script>
-    <script>
-        // Generate dynamic meteors for the physical space animation
-        document.addEventListener('DOMContentLoaded', () => {
-            // Loader Removed
+    <!-- Floating WhatsApp & Quick Call Widget (100% Free) -->
+    <div class="floating-contact-widget" role="region" aria-label="Quick School Contact">
+        <a href="https://wa.me/919822531127?text=Hello%20Happy%20English%20Medium%20School%2C%20I%20would%20like%20to%20enquire%20about%20admissions."
+           class="float-btn whatsapp" target="_blank" rel="noopener noreferrer" title="Chat on WhatsApp">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+            <span>WhatsApp Us</span>
+        </a>
+        <a href="tel:+919822531127" class="float-btn call" title="Call School Admissions">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 0 0-1.02.24l-2.2 2.2a15.045 15.045 0 0 1-6.59-6.59l2.2-2.21a.96.96 0 0 0 .25-1.02A11.36 11.36 0 0 1 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/>
+            </svg>
+            <span>Call School</span>
+        </a>
+    </div>
 
-        });
-    </script>
+    <!-- Floating Admin Mode Toolbar (Appears only during 10-min Admin Session) -->
+    <div id="adminToolbar" class="admin-toolbar-capsule" style="display: none;" role="toolbar" aria-label="Admin Tools">
+        <div class="admin-bar-left">
+            <span class="admin-status-pill">🔒 Admin Mode Active</span>
+            <span class="admin-timer" id="adminTimer">⏱️ 10:00</span>
+        </div>
+        <div class="admin-bar-actions">
+            <button type="button" id="openUploadBtn" class="admin-action-btn upload">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <span>+ Upload Photo</span>
+            </button>
+            <button type="button" id="openYearModalBtn" class="admin-action-btn year" title="Update Admission Year">
+                <span>📅 Year Settings</span>
+            </button>
+            <button type="button" id="openChangePinBtn" class="admin-action-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                <span>Change PIN</span>
+            </button>
+            <button type="button" id="exitAdminBtn" class="admin-action-btn exit" title="Exit Admin Mode">
+                <span>✕ Exit</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Secret Admin PIN Verification Modal -->
+    <div id="adminPinModal" class="admin-modal-overlay" aria-hidden="true" role="dialog">
+        <div class="admin-modal-card">
+            <div class="admin-modal-header">
+                <div class="admin-icon-circle">🔐</div>
+                <h3>Admin Verification</h3>
+                <p>Enter your secret PIN to unlock photo management.</p>
+            </div>
+            <div class="admin-modal-body">
+                <input type="password" id="adminPinInput" class="admin-pin-field" maxlength="12" placeholder="••••" autocomplete="off" inputmode="numeric">
+                <div id="pinModalFeedback" class="admin-modal-feedback"></div>
+            </div>
+            <div class="admin-modal-footer">
+                <button type="button" id="pinCancelBtn" class="admin-btn-secondary">Cancel</button>
+                <button type="button" id="pinSubmitBtn" class="admin-btn-primary">Unlock</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Photo Modal -->
+    <div id="adminUploadModal" class="admin-modal-overlay" aria-hidden="true" role="dialog">
+        <div class="admin-modal-card upload-card">
+            <div class="admin-modal-header">
+                <div class="admin-icon-circle">📸</div>
+                <h3>Upload New Photo</h3>
+                <p>Add a new moment to the school gallery.</p>
+            </div>
+            <form id="adminUploadForm" class="admin-modal-body" onsubmit="return false;">
+                <div class="admin-form-group">
+                    <label for="uploadCategory">Category</label>
+                    <select id="uploadCategory" class="admin-select" required>
+                        <option value="cultural">🎭 Cultural Fest</option>
+                        <option value="sports">🏆 Sports Meet</option>
+                        <option value="bubbles">🔬 Brainy Bubbles</option>
+                        <option value="traditions">🎨 Tiny Traditions</option>
+                        <option value="mini">🧩 Mini Activities</option>
+                    </select>
+                </div>
+                <div class="admin-form-group">
+                    <label for="uploadTitle">Photo Title / Caption</label>
+                    <input type="text" id="uploadTitle" class="admin-input" placeholder="e.g. Annual Day Dance 2026" required>
+                </div>
+                <div class="admin-form-group">
+                    <label for="uploadFile">Select Image File</label>
+                    <input type="file" id="uploadFile" class="admin-file-input" accept="image/*" required>
+                    <div id="uploadPreviewWrap" class="admin-preview-wrap" style="display:none;">
+                        <img id="uploadPreviewImg" src="" alt="Preview">
+                    </div>
+                </div>
+                <div id="uploadFeedback" class="admin-modal-feedback"></div>
+            </form>
+            <div class="admin-modal-footer">
+                <button type="button" id="cancelUploadBtn" class="admin-btn-secondary">Cancel</button>
+                <button type="button" id="submitUploadBtn" class="admin-btn-primary">Upload & Publish</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change PIN Modal -->
+    <div id="adminChangePinModal" class="admin-modal-overlay" aria-hidden="true" role="dialog">
+        <div class="admin-modal-card">
+            <div class="admin-modal-header">
+                <div class="admin-icon-circle">⚙️</div>
+                <h3>Change Admin PIN</h3>
+                <p>Update your secret access code.</p>
+            </div>
+            <div class="admin-modal-body">
+                <div class="admin-form-group">
+                    <label for="currPinField">Current PIN</label>
+                    <input type="password" id="currPinField" class="admin-input" placeholder="Current PIN" maxlength="12">
+                </div>
+                <div class="admin-form-group">
+                    <label for="newPinField">New PIN (min 4 digits)</label>
+                    <input type="password" id="newPinField" class="admin-input" placeholder="New PIN" maxlength="12">
+                </div>
+                <div class="admin-form-group">
+                    <label for="confirmPinField">Confirm New PIN</label>
+                    <input type="password" id="confirmPinField" class="admin-input" placeholder="Confirm New PIN" maxlength="12">
+                </div>
+                <div id="changePinFeedback" class="admin-modal-feedback"></div>
+            </div>
+            <div class="admin-modal-footer">
+                <button type="button" id="cancelChangePinBtn" class="admin-btn-secondary">Cancel</button>
+                <button type="button" id="submitChangePinBtn" class="admin-btn-primary">Save New PIN</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Academic Year Settings Modal -->
+    <div id="adminYearModal" class="admin-modal-overlay" aria-hidden="true" role="dialog">
+        <div class="admin-modal-card">
+            <div class="admin-modal-header">
+                <div class="admin-icon-circle">📅</div>
+                <h3>Academic & Admission Year</h3>
+                <p>Update the admission session across the entire website.</p>
+            </div>
+            <form id="adminYearForm" class="admin-modal-body" onsubmit="return false;">
+                <div class="admin-form-group">
+                    <label for="admissionYearInput">Admission Academic Year</label>
+                    <input type="text" id="admissionYearInput" class="admin-input" placeholder="e.g. 2028-29" required>
+                    <small style="color: #666; font-size: 0.8rem; margin-top: 4px; display: block;">This updates all banners, tickers, brochure cards, and page headings.</small>
+                </div>
+                <div class="admin-form-group">
+                    <label>Admission Status</label>
+                    <div class="admin-radio-group">
+                        <label class="admin-radio-label">
+                            <input type="radio" name="admissionStatus" value="open" id="statusOpen" checked>
+                            <span>🟢 Admissions Open</span>
+                        </label>
+                        <label class="admin-radio-label">
+                            <input type="radio" name="admissionStatus" value="closed" id="statusClosed">
+                            <span>🔴 Admissions Closed</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="admin-form-group">
+                    <label for="copyrightYearInput">Copyright Year</label>
+                    <input type="text" id="copyrightYearInput" class="admin-input" placeholder="e.g. 2026" maxlength="4">
+                </div>
+                <div id="yearModalFeedback" class="admin-modal-feedback"></div>
+            </form>
+            <div class="admin-modal-footer">
+                <button type="button" id="cancelYearBtn" class="admin-btn-secondary">Cancel</button>
+                <button type="button" id="submitYearBtn" class="admin-btn-primary">Save Year Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/script.js"></script>
+    <script src="../js/gallery-admin.js"></script>
 </body>
 
 </html>
-
-
-
-

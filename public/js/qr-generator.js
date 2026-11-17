@@ -1,4 +1,4 @@
-np/**
+/**
  * JavaScript QR Code Generator
  * Replaces Python backend/QRGenerator.py
  * 

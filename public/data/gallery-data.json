@@ -1,0 +1,194 @@
+[
+  {
+    "id": "cult-1",
+    "category": "cultural",
+    "badge": "Cultural Fest",
+    "src": "../assets/images/gallery/cultural_fest_1.jpg",
+    "alt": "Traditional Dance Performance",
+    "title": "Traditional Dance Performance"
+  },
+  {
+    "id": "cult-2",
+    "category": "cultural",
+    "badge": "Cultural Fest",
+    "src": "../assets/images/gallery/cultural_fest_2.jpg",
+    "alt": "Warrior Dance",
+    "title": "Warrior Dance Performance"
+  },
+  {
+    "id": "cult-3",
+    "category": "cultural",
+    "badge": "Cultural Fest",
+    "src": "../assets/images/gallery/cultural_fest_3.jpg",
+    "alt": "Pink Fairy Dance",
+    "title": "Pink Fairy Dance"
+  },
+  {
+    "id": "cult-4",
+    "category": "cultural",
+    "badge": "Cultural Fest",
+    "src": "../assets/images/gallery/cultural_fest_4.jpg",
+    "alt": "Orange & White Performance",
+    "title": "Orange & White Group Performance"
+  },
+  {
+    "id": "cult-5",
+    "category": "cultural",
+    "badge": "Cultural Fest",
+    "src": "../assets/images/gallery/cultural_fest_5.jpg",
+    "alt": "Flag Parade",
+    "title": "Celebratory Flag Parade"
+  },
+  {
+    "id": "cult-6",
+    "category": "cultural",
+    "badge": "Cultural Fest",
+    "src": "../assets/images/gallery/cultural_fest_new_1.jpg",
+    "alt": "Cultural Fest Performance 1",
+    "title": "Stage Presentation Act 1"
+  },
+  {
+    "id": "cult-7",
+    "category": "cultural",
+    "badge": "Cultural Fest",
+    "src": "../assets/images/gallery/cultural_fest_new_2.jpg",
+    "alt": "Cultural Fest Performance 2",
+    "title": "Stage Presentation Act 2"
+  },
+  {
+    "id": "cult-8",
+    "category": "cultural",
+    "badge": "Cultural Fest",
+    "src": "../assets/images/gallery/cultural_fest_new_3.jpg",
+    "alt": "Cultural Fest Performance 3",
+    "title": "Stage Presentation Act 3"
+  },
+  {
+    "id": "cult-9",
+    "category": "cultural",
+    "badge": "Cultural Fest",
+    "src": "../assets/images/gallery/cultural_fest_new_4.jpg",
+    "alt": "Cultural Fest Performance 4",
+    "title": "Stage Presentation Act 4"
+  },
+  {
+    "id": "cult-10",
+    "category": "cultural",
+    "badge": "Cultural Fest",
+    "src": "../assets/images/gallery/cultural_fest_new_5.jpg",
+    "alt": "Cultural Fest Performance 5",
+    "title": "Stage Presentation Act 5"
+  },
+  {
+    "id": "cult-11",
+    "category": "cultural",
+    "badge": "Cultural Fest",
+    "src": "../assets/images/gallery/cultural_fest_new_6.jpg",
+    "alt": "Cultural Fest Performance 6",
+    "title": "Grand Finale Showcase"
+  },
+  {
+    "id": "sport-1",
+    "category": "sports",
+    "badge": "Sports Meet",
+    "src": "../assets/images/sports_meet_1.jpg",
+    "alt": "Annual Sports Meet 1",
+    "title": "Track & Field Race"
+  },
+  {
+    "id": "sport-2",
+    "category": "sports",
+    "badge": "Sports Meet",
+    "src": "../assets/images/sports_meet_2.jpg",
+    "alt": "Annual Sports Meet 2",
+    "title": "Team Relay Excitement"
+  },
+  {
+    "id": "sport-3",
+    "category": "sports",
+    "badge": "Sports Meet",
+    "src": "../assets/images/sports_meet_3.jpg",
+    "alt": "Annual Sports Meet 3",
+    "title": "Victory & Team Spirit"
+  },
+  {
+    "id": "bubble-1",
+    "category": "bubbles",
+    "badge": "Brainy Bubbles",
+    "src": "../assets/images/brainy_bubbles.jpg",
+    "alt": "Art and Creative Play",
+    "title": "Creative Bubble Experiments"
+  },
+  {
+    "id": "bubble-2",
+    "category": "bubbles",
+    "badge": "Brainy Bubbles",
+    "src": "../assets/images/brainy_bubbles_new.jpg",
+    "alt": "Hands-on Discovery",
+    "title": "Science Wonder Discovery"
+  },
+  {
+    "id": "trad-1",
+    "category": "traditions",
+    "badge": "Tiny Traditions",
+    "src": "../assets/images/tiny_traditions.jpg",
+    "alt": "Cultural Day Gathering",
+    "title": "Heritage Attire Day"
+  },
+  {
+    "id": "trad-2",
+    "category": "traditions",
+    "badge": "Tiny Traditions",
+    "src": "../assets/images/gallery/tiny_traditions_new_1.jpg",
+    "alt": "Traditions Festival Joy",
+    "title": "Festive Celebration Circle"
+  },
+  {
+    "id": "trad-3",
+    "category": "traditions",
+    "badge": "Tiny Traditions",
+    "src": "../assets/images/gallery/traditions_1.jpg",
+    "alt": "Traditions Activity 1",
+    "title": "Cultural Art & Decor"
+  },
+  {
+    "id": "trad-4",
+    "category": "traditions",
+    "badge": "Tiny Traditions",
+    "src": "../assets/images/gallery/traditions_2.jpg",
+    "alt": "Traditions Activity 2",
+    "title": "Traditional Song & Rhythm"
+  },
+  {
+    "id": "mini-1",
+    "category": "mini",
+    "badge": "Mini Activities",
+    "src": "../assets/images/mini_activities.jpg",
+    "alt": "Group Learning",
+    "title": "Play-Based Exploration"
+  },
+  {
+    "id": "mini-2",
+    "category": "mini",
+    "badge": "Mini Activities",
+    "src": "../assets/images/mini_activities_1.jpg",
+    "alt": "Outdoor Play Activities",
+    "title": "Active Play in Sunshine"
+  },
+  {
+    "id": "mini-3",
+    "category": "mini",
+    "badge": "Mini Activities",
+    "src": "../assets/images/mini_activities_2.jpg",
+    "alt": "Fine Motor Building",
+    "title": "Building Blocks & Logic"
+  },
+  {
+    "id": "mini-4",
+    "category": "mini",
+    "badge": "Mini Activities",
+    "src": "../assets/images/mini_activities_3.jpg",
+    "alt": "Classroom Discovery",
+    "title": "Interactive Story Time"
+  }
+]

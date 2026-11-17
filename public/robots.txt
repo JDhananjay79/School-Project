@@ -1,0 +1,10 @@
+# Robots.txt for Happy English Medium School, Dighi, Pune
+# Website: https://school-project-six-chi.vercel.app/
+
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://school-project-six-chi.vercel.app/sitemap.xml
+

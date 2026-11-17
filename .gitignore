@@ -1,4 +1,28 @@
-INSTRUCTIONS_GOOGLE_SHEET.md
+# Secrets and environment variables
+.env
+.env.*
+!.env.example
+
+# Python virtual environments & bytecode
+.venv/
+env/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.sqlite3
+*.db
+api/qr_tracks.db
+
+# Dependencies & build outputs
 node_modules/
+package-lock.json
+
+# Operating System & IDE
 .DS_Store
+Thumbs.db
 .vscode/
+.idea/
+
+# Internal documentation
+INSTRUCTIONS_GOOGLE_SHEET.md
