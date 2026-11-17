@@ -480,11 +480,22 @@ document.addEventListener('DOMContentLoaded', () => {
     async function applySiteConfig() {
         try {
             let config = null;
+            // Check local cache first for instant sync
+            try {
+                const cached = JSON.parse(localStorage.getItem('hemy_site_config') || 'null');
+                if (cached && cached.admission_year) config = cached;
+            } catch (e) {}
+
             try {
                 const res = await fetch('/api/site-config');
                 if (res.ok) {
                     const data = await res.json();
-                    if (data && data.config) config = data.config;
+                    if (data && data.config) {
+                        config = data.config;
+                        try {
+                            localStorage.setItem('hemy_site_config', JSON.stringify(config));
+                        } catch (e) {}
+                    }
                 }
             } catch (e) {}
 

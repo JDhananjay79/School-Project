@@ -9,14 +9,24 @@ import time
 import hashlib
 import secrets
 
-# Locate public directory
-PUBLIC_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "public"))
+# Locate directories
+API_DIR = os.path.dirname(__file__)
+PUBLIC_DIR = os.path.abspath(os.path.join(API_DIR, "..", "public"))
 
-# Admin and gallery configuration paths
-ADMIN_CONFIG_PATH = os.path.join(os.path.dirname(__file__), "admin_config.json")
-GALLERY_DATA_PATH = os.path.join(PUBLIC_DIR, "data", "gallery-data.json")
+# Admin and gallery configuration paths with fallbacks for local and Vercel serverless
+ADMIN_CONFIG_PATH = os.path.join(API_DIR, "admin_config.json")
+TMP_ADMIN_CONFIG_PATH = "/tmp/admin_config.json"
+
 SITE_CONFIG_PATH = os.path.join(PUBLIC_DIR, "data", "site-config.json")
+API_SITE_CONFIG_PATH = os.path.join(API_DIR, "data", "site-config.json")
+TMP_SITE_CONFIG_PATH = "/tmp/site-config.json"
+
+GALLERY_DATA_PATH = os.path.join(PUBLIC_DIR, "data", "gallery-data.json")
+API_GALLERY_DATA_PATH = os.path.join(API_DIR, "data", "gallery-data.json")
+TMP_GALLERY_DATA_PATH = "/tmp/gallery-data.json"
+
 GALLERY_UPLOAD_DIR = os.path.join(PUBLIC_DIR, "assets", "images", "gallery")
+TMP_UPLOAD_DIR = "/tmp/gallery_uploads"
 
 # In-memory active admin tokens with 10-minute expiry: { token: expire_timestamp }
 ACTIVE_ADMIN_SESSIONS = {}
@@ -30,12 +40,13 @@ BADGE_MAP = {
 }
 
 def load_site_config():
-    if os.path.exists(SITE_CONFIG_PATH):
-        try:
-            with open(SITE_CONFIG_PATH, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except Exception as e:
-            print(f"Error reading site config: {e}")
+    for p in [TMP_SITE_CONFIG_PATH, SITE_CONFIG_PATH, API_SITE_CONFIG_PATH]:
+        if os.path.exists(p):
+            try:
+                with open(p, "r", encoding="utf-8") as f:
+                    return json.load(f)
+            except Exception as e:
+                print(f"Error reading site config from {p}: {e}")
     cfg = {
         "admission_year": "2027-28",
         "is_admission_open": True,
@@ -45,20 +56,30 @@ def load_site_config():
     return cfg
 
 def save_site_config(cfg):
-    try:
-        os.makedirs(os.path.dirname(SITE_CONFIG_PATH), exist_ok=True)
-        with open(SITE_CONFIG_PATH, "w", encoding="utf-8") as f:
-            json.dump(cfg, f, indent=2)
-    except Exception as e:
-        print(f"Error saving site config: {e}")
+    saved = False
+    for p in [SITE_CONFIG_PATH, API_SITE_CONFIG_PATH]:
+        try:
+            os.makedirs(os.path.dirname(p), exist_ok=True)
+            with open(p, "w", encoding="utf-8") as f:
+                json.dump(cfg, f, indent=2)
+            saved = True
+        except Exception:
+            pass
+    if not saved and os.path.exists("/tmp"):
+        try:
+            with open(TMP_SITE_CONFIG_PATH, "w", encoding="utf-8") as f:
+                json.dump(cfg, f, indent=2)
+        except Exception as e:
+            print(f"Error saving site config to /tmp: {e}")
 
 def load_admin_config():
-    if os.path.exists(ADMIN_CONFIG_PATH):
-        try:
-            with open(ADMIN_CONFIG_PATH, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except Exception as e:
-            print(f"Error reading admin config: {e}")
+    for p in [TMP_ADMIN_CONFIG_PATH, ADMIN_CONFIG_PATH]:
+        if os.path.exists(p):
+            try:
+                with open(p, "r", encoding="utf-8") as f:
+                    return json.load(f)
+            except Exception as e:
+                print(f"Error reading admin config from {p}: {e}")
     # Default initial PIN: 9822
     default_hash = hashlib.sha256(b"9822").hexdigest()
     cfg = {"pin_hash": default_hash, "failed_attempts": 0, "locked_until": 0}
@@ -70,25 +91,44 @@ def save_admin_config(cfg):
         os.makedirs(os.path.dirname(ADMIN_CONFIG_PATH), exist_ok=True)
         with open(ADMIN_CONFIG_PATH, "w", encoding="utf-8") as f:
             json.dump(cfg, f, indent=2)
-    except Exception as e:
-        print(f"Error saving admin config: {e}")
+        return
+    except Exception:
+        pass
+    if os.path.exists("/tmp"):
+        try:
+            with open(TMP_ADMIN_CONFIG_PATH, "w", encoding="utf-8") as f:
+                json.dump(cfg, f, indent=2)
+        except Exception as e:
+            print(f"Error saving admin config to /tmp: {e}")
 
 def load_gallery_items():
-    if os.path.exists(GALLERY_DATA_PATH):
-        try:
-            with open(GALLERY_DATA_PATH, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except Exception as e:
-            print(f"Error loading gallery items: {e}")
+    for p in [TMP_GALLERY_DATA_PATH, GALLERY_DATA_PATH, API_GALLERY_DATA_PATH]:
+        if os.path.exists(p):
+            try:
+                with open(p, "r", encoding="utf-8") as f:
+                    items = json.load(f)
+                    if isinstance(items, list):
+                        return items
+            except Exception as e:
+                print(f"Error loading gallery items from {p}: {e}")
     return []
 
 def save_gallery_items(items):
-    try:
-        os.makedirs(os.path.dirname(GALLERY_DATA_PATH), exist_ok=True)
-        with open(GALLERY_DATA_PATH, "w", encoding="utf-8") as f:
-            json.dump(items, f, indent=2)
-    except Exception as e:
-        print(f"Error saving gallery items: {e}")
+    saved = False
+    for p in [GALLERY_DATA_PATH, API_GALLERY_DATA_PATH]:
+        try:
+            os.makedirs(os.path.dirname(p), exist_ok=True)
+            with open(p, "w", encoding="utf-8") as f:
+                json.dump(items, f, indent=2)
+            saved = True
+        except Exception:
+            pass
+    if not saved and os.path.exists("/tmp"):
+        try:
+            with open(TMP_GALLERY_DATA_PATH, "w", encoding="utf-8") as f:
+                json.dump(items, f, indent=2)
+        except Exception as e:
+            print(f"Error saving gallery items to /tmp: {e}")
 
 def is_valid_admin_request(req):
     token = req.headers.get("X-Admin-Token") or req.headers.get("Authorization", "").replace("Bearer ", "").strip()
@@ -110,6 +150,22 @@ app = Flask(
     static_folder=PUBLIC_DIR if os.path.exists(PUBLIC_DIR) else None,
     static_url_path=""
 )
+
+@app.after_request
+def add_cors_headers(response):
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS, DELETE"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type, X-Admin-Token, Authorization"
+    return response
+
+@app.before_request
+def handle_preflight():
+    if request.method == "OPTIONS":
+        res = jsonify({"status": "ok"})
+        res.headers["Access-Control-Allow-Origin"] = "*"
+        res.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS, DELETE"
+        res.headers["Access-Control-Allow-Headers"] = "Content-Type, X-Admin-Token, Authorization"
+        return res, 200
 
 # Base application URL (configurable via env var or dynamically detected from request)
 DEFAULT_URL = "https://school-project-six-chi.vercel.app"
