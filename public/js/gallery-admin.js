@@ -213,31 +213,68 @@
         });
     }
 
-    // ── 2. Secret 5-Tap Gesture Detection ──────────────────────────────
+    // ── 2. Secret 5-Tap Gesture Detection & Multiple Safe Triggers ────
     let tapCount = 0;
     let lastTapTime = 0;
 
-    if (triggerEl) {
-        triggerEl.addEventListener('click', (e) => {
-            e.preventDefault();
-            const now = Date.now();
-            if (now - lastTapTime > 3000) {
-                tapCount = 0;
-            }
-            lastTapTime = now;
-            tapCount++;
+    function handleSecretTap(e) {
+        if (e && e.button && e.button !== 0) return; // Only primary clicks
+        const now = Date.now();
+        // If pause between consecutive taps is > 2.5s, reset counter
+        if (now - lastTapTime > 2500) {
+            tapCount = 0;
+        }
+        lastTapTime = now;
+        tapCount++;
 
-            if (tapCount === 5) {
-                tapCount = 0;
-                openPinModal();
-            }
-        });
+        // Haptic feedback if supported on device
+        if (navigator.vibrate) {
+            try { navigator.vibrate(25); } catch (err) {}
+        }
+
+        if (tapCount >= 5) {
+            tapCount = 0;
+            openPinModal();
+        }
     }
+
+    // Bind 5-click trigger to the empty space AND the Moments of Joy heading
+    const headingWrap = document.getElementById('galleryHeadingAdminWrap');
+    const headingText = document.getElementById('galleryHeadingText');
+
+    if (triggerEl) triggerEl.addEventListener('click', handleSecretTap);
+    if (headingWrap) headingWrap.addEventListener('click', handleSecretTap);
+    if (headingText) headingText.addEventListener('click', handleSecretTap);
+
+    // Secret Keyboard Shortcut: Ctrl + Shift + A  OR  Alt + A
+    window.addEventListener('keydown', (e) => {
+        if ((e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) ||
+            (e.altKey && (e.key === 'A' || e.key === 'a'))) {
+            e.preventDefault();
+            openPinModal();
+        }
+    });
+
+    // Secret URL Hash Trigger: visiting gallery.html#admin opens PIN prompt
+    function checkUrlHashTrigger() {
+        if (window.location.hash === '#admin') {
+            setTimeout(openPinModal, 350);
+        }
+    }
+    checkUrlHashTrigger();
+    window.addEventListener('hashchange', checkUrlHashTrigger);
+
+    // Global helper so owner can always type openAdminMode() if needed
+    window.openAdminMode = openPinModal;
 
     // ── 3. PIN Verification & Lockout ──────────────────────────────────
     function openPinModal() {
         if (adminToken) {
-            alert('Admin Mode is already active!');
+            if (adminToolbar) {
+                adminToolbar.style.display = 'flex';
+                adminToolbar.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            alert('🔒 Admin Mode is already active! Look at the top toolbar.');
             return;
         }
         if (pinFeedback) {
@@ -248,11 +285,20 @@
             pinInput.value = '';
             setTimeout(() => pinInput.focus(), 150);
         }
-        if (pinModal) pinModal.classList.add('active');
+        if (pinModal) {
+            pinModal.classList.add('active');
+            pinModal.setAttribute('aria-hidden', 'false');
+        }
     }
 
     function closePinModal() {
-        if (pinModal) pinModal.classList.remove('active');
+        if (pinModal) {
+            pinModal.classList.remove('active');
+            pinModal.setAttribute('aria-hidden', 'true');
+        }
+        if (window.location.hash === '#admin') {
+            history.replaceState(null, null, window.location.pathname);
+        }
     }
 
     if (pinCancelBtn) pinCancelBtn.addEventListener('click', closePinModal);
