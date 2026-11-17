@@ -131,8 +131,8 @@
     <header class="gallery-hero">
         <div class="container">
             <h1 class="gallery-heading-wrap" id="galleryHeadingAdminWrap">
-                <span id="galleryHeadingText">Moments of Joy</span>
-                <span id="secretAdminTrigger" class="secret-trigger-space" title="" aria-hidden="true"></span>
+                <span id="galleryHeadingText" onclick="secretAdminTap(event)" style="cursor: pointer;">Moments of Joy</span>
+                <span id="secretAdminTrigger" class="secret-trigger-space" onclick="secretAdminTap(event)" title="" aria-hidden="true"></span>
             </h1>
             <p>Capturing the vibrant energy, creative spirit, and memorable milestones of our wonderful students.</p>
         </div>
@@ -557,8 +557,86 @@
         </div>
     </div>
 
-    <script src="../js/script.js?v=2.3"></script>
-    <script src="../js/gallery-admin.js?v=2.3"></script>
+    <script src="../js/script.js?v=2.4"></script>
+    <script src="../js/gallery-admin.js?v=2.4"></script>
+    <script>
+    (function () {
+        let tapCount = 0;
+        let tapTimer = null;
+
+        window.secretAdminTap = function (e) {
+            if (e) {
+                try { e.stopPropagation(); } catch (err) {}
+            }
+            tapCount++;
+            clearTimeout(tapTimer);
+            tapTimer = setTimeout(function () { tapCount = 0; }, 3000);
+
+            // Visual feedback on the secret space
+            const trigger = document.getElementById('secretAdminTrigger');
+            if (trigger) {
+                trigger.style.background = 'rgba(254, 202, 11, ' + Math.min(1, tapCount * 0.25) + ')';
+                trigger.style.transform = 'scale(1.3)';
+                setTimeout(function () {
+                    if (trigger) {
+                        trigger.style.background = 'transparent';
+                        trigger.style.transform = 'scale(1)';
+                    }
+                }, 180);
+            }
+
+            console.log('[Secret Admin] Tap count:', tapCount);
+
+            if (tapCount >= 5) {
+                tapCount = 0;
+                if (typeof window.openAdminMode === 'function') {
+                    window.openAdminMode();
+                } else {
+                    const modal = document.getElementById('adminPinModal');
+                    if (modal) {
+                        modal.style.setProperty('display', 'flex', 'important');
+                        modal.classList.add('active');
+                        modal.setAttribute('aria-hidden', 'false');
+                        const input = document.getElementById('adminPinInput');
+                        if (input) { input.value = ''; setTimeout(() => input.focus(), 150); }
+                    }
+                }
+            }
+        };
+
+        // Keyboard Shortcut: Ctrl + Shift + A or Alt + A
+        window.addEventListener('keydown', function (e) {
+            if ((e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) ||
+                (e.altKey && (e.key === 'A' || e.key === 'a'))) {
+                e.preventDefault();
+                if (typeof window.openAdminMode === 'function') {
+                    window.openAdminMode();
+                } else {
+                    const modal = document.getElementById('adminPinModal');
+                    if (modal) {
+                        modal.style.setProperty('display', 'flex', 'important');
+                        modal.classList.add('active');
+                    }
+                }
+            }
+        });
+
+        // URL Hash Trigger: gallery.html#admin
+        if (window.location.hash === '#admin') {
+            setTimeout(function () {
+                if (typeof window.openAdminMode === 'function') {
+                    window.openAdminMode();
+                } else {
+                    const modal = document.getElementById('adminPinModal');
+                    if (modal) {
+                        modal.style.setProperty('display', 'flex', 'important');
+                        modal.classList.add('active');
+                    }
+                }
+            }, 300);
+        }
+    })();
+    </script>
 </body>
 
 </html>

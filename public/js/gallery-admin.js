@@ -297,13 +297,8 @@
 
     // ── 3. PIN Verification & Lockout ──────────────────────────────────
     function openPinModal() {
-        if (adminToken) {
-            if (adminToolbar) {
-                adminToolbar.style.display = 'flex';
-                adminToolbar.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-            alert('🔒 Admin Mode is already active! Look at the top toolbar.');
-            return;
+        if (adminToken && adminToolbar) {
+            adminToolbar.style.display = 'flex';
         }
         if (pinFeedback) {
             pinFeedback.textContent = '';
@@ -315,7 +310,7 @@
         }
         const modal = document.getElementById('adminPinModal') || pinModal;
         if (modal) {
-            modal.style.display = 'flex'; // Force display flex to guarantee visibility
+            modal.style.setProperty('display', 'flex', 'important');
             modal.classList.add('active');
             modal.setAttribute('aria-hidden', 'false');
         }
@@ -324,7 +319,7 @@
     function closePinModal() {
         const modal = document.getElementById('adminPinModal') || pinModal;
         if (modal) {
-            modal.style.display = 'none';
+            modal.style.setProperty('display', 'none', 'important');
             modal.classList.remove('active');
             modal.setAttribute('aria-hidden', 'true');
         }
