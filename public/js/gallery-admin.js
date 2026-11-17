@@ -213,38 +213,66 @@
         });
     }
 
-    // ── 2. Secret 5-Tap Gesture Detection & Multiple Safe Triggers ────
+    // ── 2. Secret Gesture Detection & Multiple Safe Triggers ─────────
     let tapCount = 0;
     let lastTapTime = 0;
+    let lastHandledTimestamp = 0;
 
-    function handleSecretTap(e) {
-        if (e && e.button && e.button !== 0) return; // Only primary clicks
+    function onSecretInteraction(e) {
         const now = Date.now();
-        // If pause between consecutive taps is > 2.5s, reset counter
-        if (now - lastTapTime > 2500) {
+        // Debounce to prevent dual-firing from pointerdown + click on the same tap
+        if (now - lastHandledTimestamp < 80) return;
+        lastHandledTimestamp = now;
+
+        if (e) {
+            if (e.button !== undefined && e.button !== 0) return; // Only primary button
+            try { e.preventDefault(); } catch (err) {}
+            try { e.stopPropagation(); } catch (err) {}
+        }
+
+        // If pause between consecutive taps is > 3s, reset counter
+        if (now - lastTapTime > 3000) {
             tapCount = 0;
         }
         lastTapTime = now;
         tapCount++;
+
+        // Visual subtle micro-pulse on the trigger space so owner feels the click
+        if (triggerEl) {
+            triggerEl.style.transform = 'scale(1.3)';
+            triggerEl.style.background = 'rgba(254, 202, 11, 0.2)';
+            setTimeout(() => {
+                if (triggerEl) {
+                    triggerEl.style.transform = 'scale(1)';
+                    triggerEl.style.background = 'transparent';
+                }
+            }, 120);
+        }
 
         // Haptic feedback if supported on device
         if (navigator.vibrate) {
             try { navigator.vibrate(25); } catch (err) {}
         }
 
-        if (tapCount >= 5) {
+        console.log(`[Admin Trigger] Tap ${tapCount}/4-5 registered.`);
+
+        // Unlock on 4th or 5th tap smoothly
+        if (tapCount >= 4) {
             tapCount = 0;
             openPinModal();
         }
     }
 
-    // Bind 5-click trigger to the empty space AND the Moments of Joy heading
+    // Bind both pointerdown (instant, immune to drag) AND click
     const headingWrap = document.getElementById('galleryHeadingAdminWrap');
     const headingText = document.getElementById('galleryHeadingText');
 
-    if (triggerEl) triggerEl.addEventListener('click', handleSecretTap);
-    if (headingWrap) headingWrap.addEventListener('click', handleSecretTap);
-    if (headingText) headingText.addEventListener('click', handleSecretTap);
+    [triggerEl, headingWrap, headingText].forEach(el => {
+        if (el) {
+            el.addEventListener('pointerdown', onSecretInteraction, { passive: false });
+            el.addEventListener('click', onSecretInteraction, { passive: false });
+        }
+    });
 
     // Secret Keyboard Shortcut: Ctrl + Shift + A  OR  Alt + A
     window.addEventListener('keydown', (e) => {
@@ -258,13 +286,13 @@
     // Secret URL Hash Trigger: visiting gallery.html#admin opens PIN prompt
     function checkUrlHashTrigger() {
         if (window.location.hash === '#admin') {
-            setTimeout(openPinModal, 350);
+            setTimeout(openPinModal, 300);
         }
     }
     checkUrlHashTrigger();
     window.addEventListener('hashchange', checkUrlHashTrigger);
 
-    // Global helper so owner can always type openAdminMode() if needed
+    // Global helper so owner can always type openAdminMode() in console if ever needed
     window.openAdminMode = openPinModal;
 
     // ── 3. PIN Verification & Lockout ──────────────────────────────────
@@ -285,16 +313,20 @@
             pinInput.value = '';
             setTimeout(() => pinInput.focus(), 150);
         }
-        if (pinModal) {
-            pinModal.classList.add('active');
-            pinModal.setAttribute('aria-hidden', 'false');
+        const modal = document.getElementById('adminPinModal') || pinModal;
+        if (modal) {
+            modal.style.display = 'flex'; // Force display flex to guarantee visibility
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
         }
     }
 
     function closePinModal() {
-        if (pinModal) {
-            pinModal.classList.remove('active');
-            pinModal.setAttribute('aria-hidden', 'true');
+        const modal = document.getElementById('adminPinModal') || pinModal;
+        if (modal) {
+            modal.style.display = 'none';
+            modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
         }
         if (window.location.hash === '#admin') {
             history.replaceState(null, null, window.location.pathname);
