@@ -30,6 +30,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Auto-scroll active mobile navigation pill into view on mobile
+    try {
+        const activeNavPill = document.querySelector('.nav-links a.active');
+        if (activeNavPill && window.innerWidth <= 992) {
+            setTimeout(() => {
+                activeNavPill.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            }, 100);
+        }
+    } catch (e) {}
+
     // Admission Form & Interactive Modal Logic
     const gradeSelect = document.getElementById('gradeSelect');
     const firstNameInput = document.getElementById('firstNameInput');

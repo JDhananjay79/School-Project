@@ -454,82 +454,175 @@ p {
 /* Tablet & Mobile Screens (max-width: 992px) */
 @media (max-width: 992px) {
     .navbar {
-        padding: 0.4rem 0;
+        padding: 0.45rem 0 0.35rem;
+    }
+
+    .navbar.scrolled {
+        padding: 0.35rem 0 0.28rem;
+    }
+
+    .nav-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.45rem;
+        padding: 0 0.75rem;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* ── Requirement 2: School name and logo on dashboard at the center aligned ── */
+    .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        gap: 10px;
+        margin: 0 auto;
+        width: 100%;
     }
 
     .logo img {
         height: 44px;
         max-width: 65px;
+        padding: 2px 5px;
+        flex-shrink: 0;
     }
 
     .logo span {
-        font-size: 1.1rem;
-        white-space: normal;
-        line-height: 1.15;
+        font-size: 1.18rem;
+        text-align: center;
+        white-space: nowrap;
+        line-height: 1.2;
+        letter-spacing: 0.3px;
+        display: inline-block;
     }
 
+    /* Redundant hamburger button hidden since options are arranged directly */
     .mobile-menu-btn {
-        display: flex;
+        display: none !important;
     }
 
-    .mobile-menu-btn.active .bar:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-    }
-
-    .mobile-menu-btn.active .bar:nth-child(2) {
-        opacity: 0;
-    }
-
-    .mobile-menu-btn.active .bar:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -5px);
-    }
-
+    /* ── Requirement 1: Navigation bar options appear & arranged properly for mobile devices ── */
     .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: rgba(255, 253, 251, 0.98);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        flex-direction: column;
-        padding: 1.25rem 1.5rem 1.8rem;
-        gap: 0.6rem;
-        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
-        border-bottom: 2px solid rgba(107, 16, 156, 0.15);
-        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-        transition: clip-path 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex !important;
+        position: static !important;
+        top: auto !important;
+        left: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 0.45rem !important;
+        padding: 0.25rem 0.35rem 0.4rem !important;
+        margin: 0 auto !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        clip-path: none !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+        scroll-padding: 0.5rem;
     }
 
-    .nav-links.active {
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    .nav-links::-webkit-scrollbar {
+        display: none !important;
     }
 
     .nav-links li {
-        width: 100%;
-        justify-content: center;
+        display: inline-flex !important;
+        flex-shrink: 0 !important;
+        width: auto !important;
+        justify-content: center !important;
+        list-style: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
     .nav-links a {
-        width: 100%;
-        padding: 0.75rem 1rem;
-        font-size: 1.05rem;
-        border-radius: 12px;
-        justify-content: center;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: auto !important;
+        white-space: nowrap !important;
+        padding: 0.4rem 0.85rem !important;
+        font-size: 0.86rem !important;
+        font-weight: 600 !important;
+        border-radius: 50px !important;
+        background: rgba(107, 16, 156, 0.07) !important;
+        color: var(--text-dark) !important;
+        border: 1.2px solid rgba(107, 16, 156, 0.14) !important;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04) !important;
+        transition: all 0.2s ease !important;
+        scroll-margin: 0.5rem;
+    }
+
+    .nav-links a:hover {
+        background: rgba(255, 75, 1, 0.1) !important;
+        color: var(--primary-orange) !important;
+        border-color: rgba(255, 75, 1, 0.3) !important;
+        transform: translateY(-1px) !important;
+    }
+
+    .nav-links a.active {
+        background: linear-gradient(135deg, var(--primary-purple) 0%, #4f0b73 100%) !important;
+        color: #ffffff !important;
+        border-color: var(--primary-purple) !important;
+        box-shadow: 0 3px 10px rgba(107, 16, 156, 0.35) !important;
     }
 
     .nav-links .btn-purple {
-        width: 100%;
-        max-width: 260px;
-        margin: 0.4rem auto 0;
-        padding: 0.75rem 1.5rem !important;
-        font-size: 1rem !important;
-        display: inline-flex !important;
-        justify-content: center !important;
+        background: linear-gradient(135deg, var(--primary-orange) 0%, #e03f00 100%) !important;
+        color: #ffffff !important;
+        border-color: transparent !important;
+        box-shadow: 0 3px 10px rgba(255, 75, 1, 0.35) !important;
+        margin: 0 !important;
+        padding: 0.4rem 1.05rem !important;
+        font-size: 0.86rem !important;
+        width: auto !important;
+        max-width: none !important;
+    }
+
+    .nav-links .btn-purple:hover {
+        box-shadow: 0 4px 14px rgba(255, 75, 1, 0.5) !important;
+        transform: translateY(-1px) !important;
+    }
+
+    /* Provide comfortable top spacing for page content below the fixed 2-tier mobile navbar */
+    .hero {
+        padding-top: 115px !important;
     }
 }
 
+/* Tablet Centering (601px to 992px) */
+@media (min-width: 601px) and (max-width: 992px) {
+    .nav-links {
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+    }
+}
+
+/* Mobile Screens (max-width: 480px) */
 @media (max-width: 480px) {
+    .navbar {
+        padding: 0.4rem 0 0.3rem;
+    }
+
+    .nav-container {
+        gap: 0.35rem;
+        padding: 0 0.5rem;
+    }
+
+    .logo {
+        gap: 8px;
+    }
+
     .logo img {
         height: 38px;
         max-width: 55px;
@@ -537,8 +630,46 @@ p {
     }
 
     .logo span {
+        font-size: 1.02rem;
+        line-height: 1.15;
+    }
+
+    .nav-links {
+        gap: 0.35rem !important;
+        padding: 0.15rem 0.2rem 0.35rem !important;
+    }
+
+    .nav-links a {
+        padding: 0.34rem 0.72rem !important;
+        font-size: 0.81rem !important;
+    }
+
+    .nav-links .btn-purple {
+        padding: 0.34rem 0.88rem !important;
+        font-size: 0.81rem !important;
+    }
+
+    .hero {
+        padding-top: 110px !important;
+    }
+}
+
+/* Extra Small Screens (max-width: 360px) */
+@media (max-width: 360px) {
+    .logo img {
+        height: 32px;
+        max-width: 46px;
+    }
+
+    .logo span {
         font-size: 0.92rem;
+        white-space: normal;
         line-height: 1.1;
+    }
+
+    .nav-links a {
+        padding: 0.3rem 0.65rem !important;
+        font-size: 0.78rem !important;
     }
 }
 
@@ -1022,40 +1153,6 @@ p {
 
     h2 {
         font-size: 2rem;
-    }
-
-    .nav-links {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: var(--white);
-        flex-direction: column;
-        padding: 2rem;
-        gap: 1.5rem;
-        box-shadow: var(--shadow-md);
-        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-        transition: 0.4s ease-in-out;
-    }
-
-    .nav-links.active {
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-    }
-
-    .mobile-menu-btn {
-        display: block;
-    }
-
-    .mobile-menu-btn.active .bar:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 6px);
-    }
-
-    .mobile-menu-btn.active .bar:nth-child(2) {
-        opacity: 0;
-    }
-
-    .mobile-menu-btn.active .bar:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -6px);
     }
 
     .hero-bg .overlay {
