@@ -438,12 +438,12 @@
                 <p>Enter your secret PIN to unlock photo management.</p>
             </div>
             <div class="admin-modal-body">
-                <input type="password" id="adminPinInput" class="admin-pin-field" maxlength="12" placeholder="••••" autocomplete="off" inputmode="numeric">
+                <input type="password" id="adminPinInput" class="admin-pin-field" maxlength="12" placeholder="••••" autocomplete="off" inputmode="numeric" onkeydown="if(event.key==='Enter'){if(window.submitAdminPin)window.submitAdminPin();}">
                 <div id="pinModalFeedback" class="admin-modal-feedback"></div>
             </div>
             <div class="admin-modal-footer">
-                <button type="button" id="pinCancelBtn" class="admin-btn-secondary">Cancel</button>
-                <button type="button" id="pinSubmitBtn" class="admin-btn-primary">Unlock</button>
+                <button type="button" id="pinCancelBtn" class="admin-btn-secondary" onclick="if(window.closeAdminPinModal){window.closeAdminPinModal();}else{document.getElementById('adminPinModal').style.display='none';}">Cancel</button>
+                <button type="button" id="pinSubmitBtn" class="admin-btn-primary" onclick="if(window.submitAdminPin){window.submitAdminPin();}">Unlock</button>
             </div>
         </div>
     </div>
@@ -557,8 +557,8 @@
         </div>
     </div>
 
-    <script src="../js/script.js?v=2.4"></script>
-    <script src="../js/gallery-admin.js?v=2.4"></script>
+    <script src="../js/script.js?v=2.5"></script>
+    <script src="../js/gallery-admin.js?v=2.5"></script>
     <script>
     (function () {
         let tapCount = 0;

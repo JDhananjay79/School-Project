@@ -292,21 +292,25 @@
     checkUrlHashTrigger();
     window.addEventListener('hashchange', checkUrlHashTrigger);
 
-    // Global helper so owner can always type openAdminMode() in console if ever needed
+    // Global helpers so inline handlers and owner console can always call them
     window.openAdminMode = openPinModal;
+    window.closeAdminPinModal = closePinModal;
+    window.submitAdminPin = submitPin;
 
     // ── 3. PIN Verification & Lockout ──────────────────────────────────
     function openPinModal() {
         if (adminToken && adminToolbar) {
             adminToolbar.style.display = 'flex';
         }
-        if (pinFeedback) {
-            pinFeedback.textContent = '';
-            pinFeedback.className = 'admin-modal-feedback';
+        const feedbackEl = document.getElementById('pinModalFeedback') || pinFeedback;
+        if (feedbackEl) {
+            feedbackEl.textContent = '';
+            feedbackEl.className = 'admin-modal-feedback';
         }
-        if (pinInput) {
-            pinInput.value = '';
-            setTimeout(() => pinInput.focus(), 150);
+        const inputEl = document.getElementById('adminPinInput') || pinInput;
+        if (inputEl) {
+            inputEl.value = '';
+            setTimeout(() => inputEl.focus(), 150);
         }
         const modal = document.getElementById('adminPinModal') || pinModal;
         if (modal) {
@@ -350,14 +354,20 @@
     }
 
     async function submitPin() {
-        const pin = pinInput.value.trim();
+        const inputEl = document.getElementById('adminPinInput') || pinInput;
+        const submitBtn = document.getElementById('pinSubmitBtn') || pinSubmitBtn;
+        const feedbackEl = document.getElementById('pinModalFeedback') || pinFeedback;
+
+        const pin = inputEl ? inputEl.value.trim() : '';
         if (!pin) {
-            showFeedback(pinFeedback, 'Please enter your PIN.', 'error');
+            showFeedback(feedbackEl, 'Please enter your PIN.', 'error');
             return;
         }
 
-        pinSubmitBtn.disabled = true;
-        pinSubmitBtn.textContent = 'Verifying...';
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Verifying...';
+        }
 
         let serverExplicitError = null;
 
@@ -373,8 +383,10 @@
                 if (data && data.success) {
                     closePinModal();
                     startAdminSession(data.token, data.expires_in || 600);
-                    pinSubmitBtn.disabled = false;
-                    pinSubmitBtn.textContent = 'Unlock';
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Unlock';
+                    }
                     return;
                 }
             } else if (res.status === 401 || res.status === 429) {
@@ -388,9 +400,11 @@
         }
 
         if (serverExplicitError) {
-            showFeedback(pinFeedback, serverExplicitError, 'error');
-            pinSubmitBtn.disabled = false;
-            pinSubmitBtn.textContent = 'Unlock';
+            showFeedback(feedbackEl, serverExplicitError, 'error');
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Unlock';
+            }
             return;
         }
 
@@ -405,11 +419,13 @@
             const fallbackToken = 'client_' + Date.now();
             startAdminSession(fallbackToken, 600);
         } else {
-            showFeedback(pinFeedback, 'Incorrect PIN. Please try again.', 'error');
+            showFeedback(feedbackEl, 'Incorrect PIN. Please try again.', 'error');
         }
 
-        pinSubmitBtn.disabled = false;
-        pinSubmitBtn.textContent = 'Unlock';
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Unlock';
+        }
     }
 
     // ── 4. 10-Minute Admin Session & Countdown ─────────────────────────
@@ -808,10 +824,10 @@
 
             setTimeout(() => {
                 if (yearModal) yearModal.classList.remove('active');
-            }, 1000); finally {
-                submitYearBtn.disabled = false;
-                submitYearBtn.textContent = 'Save Year Changes';
-            }
+            }, 1000);
+
+            submitYearBtn.disabled = false;
+            submitYearBtn.textContent = 'Save Year Changes';
         });
     }
 
